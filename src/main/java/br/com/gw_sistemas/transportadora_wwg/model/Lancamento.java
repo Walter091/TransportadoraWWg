@@ -1,6 +1,6 @@
 package br.com.gw_sistemas.transportadora_wwg.model;
 
-import br.com.gw_sistemas.transportadora_wwg.enums.Status;
+import br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -32,7 +32,7 @@ public class Lancamento {
     private String dataEntrega;
 
     @Column(name = "STATUS")
-    private Status status;
+    private StatusEnum status;
 
     @ManyToOne
     @JoinColumn(name = "REMETENTE")
@@ -45,5 +45,8 @@ public class Lancamento {
     @ManyToOne
     @JoinColumn(name = "PRODUTO")
     private Produto produto;
+
+    @Column(name = "IND_REG")
+    private int indReg;
 
 }

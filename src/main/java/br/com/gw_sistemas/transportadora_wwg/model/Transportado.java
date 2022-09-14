@@ -1,5 +1,7 @@
 package br.com.gw_sistemas.transportadora_wwg.model;
 
+import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +17,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "transportado")
-public class Transportado {
+public class Transportado implements Serializable {
 
     @EqualsAndHashCode.Include
     @Id
@@ -25,4 +27,8 @@ public class Transportado {
     @ManyToOne
     @JoinColumn(name = "PESSOA_ID")
     private Pessoa pessoa;
+    
+    @Column(name = "IND_REG")
+    private int indReg;
+
 }

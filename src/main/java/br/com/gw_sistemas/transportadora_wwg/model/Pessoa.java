@@ -26,10 +26,10 @@ public class Pessoa {
     private String nome;
 
     @Column(unique = true, nullable = true)
-    private String CNPJ;
+    private String cnpj;
 
     @Column(unique = true, nullable = true)
-    private String CPF;
+    private String cpf;
 
     @Column(nullable = true, name = "RAZAO_SOCIAL")
     private String razaoSocial;
@@ -38,7 +38,7 @@ public class Pessoa {
     private String cidade;
 
     @Column(nullable = false)
-    private String UF;
+    private String uf;
 
     @Column(nullable = false, name = "BAIRRO")
     private String bairro;
@@ -48,5 +48,8 @@ public class Pessoa {
 
     @Column(nullable = false, name = "NUMERO")
     private int numero;
+
+    @Column(name = "IND_REG")
+    private int indReg;
 
 }

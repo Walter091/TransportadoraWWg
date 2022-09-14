@@ -37,5 +37,8 @@ public class Produto {
     
     @Column(nullable = false, name = "VOLUME")
     private double volume;
+    
+    @Column(name = "IND_REG")
+    private int indReg;
 
 }
