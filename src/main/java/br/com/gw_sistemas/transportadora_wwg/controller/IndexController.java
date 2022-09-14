@@ -7,25 +7,24 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-
 @RestController
 public class IndexController {
-    
+
     @Autowired
     private ServicePessoa servico;
-    
+
     @GetMapping("/index")
-    public String index(){
-        return "/index";
+    public String index() {
+        return "home/index";
     }
-    
+
     @GetMapping("/buscar")
-    public Iterable buscar(){
+    public Iterable buscar() {
         return servico.buscarTodos();
     }
 
     @PostMapping("/persistir")
-    public void salvar(Pessoa pessoa){
+    public void salvar(Pessoa pessoa) {
         servico.salvar(pessoa);
     }
 }
