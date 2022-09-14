@@ -6,15 +6,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServicePessoa {
+public class ServicePessoa implements IntfcServiceBase {
     
     @Autowired
     private RepositoryPessoa repositorio;
     
+    @Override
     public void salvar(Pessoa pessoa){
         repositorio.save(pessoa);
     }
     
+    @Override
     public Iterable<Pessoa> buscarTodos(){
         return repositorio.findAll();
     }
