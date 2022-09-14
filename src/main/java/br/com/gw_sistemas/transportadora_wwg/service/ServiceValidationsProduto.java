@@ -1,22 +1,24 @@
 package br.com.gw_sistemas.transportadora_wwg.service;
 
-public class ServiceValidationsProduto extends ServiceValidation {
+import br.com.gw_sistemas.transportadora_wwg.model.Produto;
 
-//    protected boolean doAntesDeSalvar() {
-//        // implementar validações antes de salavr....
-//
-//        return true;
-//    }
-//
-//    protected boolean doAntesDeAlterar() {
-//        // implementar validações antes de Alterar....
-//
-//        return true;
-//    }
-//
-//    protected boolean doAntesDeExcluir() {
-//        // implementar validações antes de Excluir....
-//
-//        return true;
-//    }
+public class ServiceValidationsProduto  {
+
+    protected boolean doAntesDeSalvar(Produto produto) {
+        
+        
+        return true;
+    }
+
+    protected boolean doAntesDeAlterar() {
+        // implementar validações antes de Alterar....
+
+        return true;
+    }
+
+    protected boolean doAntesDeExcluir() {
+        // implementar validações antes de Excluir....
+
+        return true;
+    }
 }

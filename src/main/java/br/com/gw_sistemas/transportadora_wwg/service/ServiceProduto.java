@@ -3,43 +3,47 @@ package br.com.gw_sistemas.transportadora_wwg.service;
 import br.com.gw_sistemas.transportadora_wwg.model.Produto;
 import br.com.gw_sistemas.transportadora_wwg.repositorys.RepositoryProduto;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-public class ServiceProduto implements IntfcServiceProduto {
+@Service
+public class ServiceProduto extends ServiceValidationsProduto {
 
     @Autowired
     private RepositoryProduto repositorio;
 
-    @Autowired
-    private ServiceValidationsProduto validationsProduto;
-
-    @Override
     public Iterable<Produto> buscarTodos() {
         return repositorio.findAll();
     }
 
-    @Override
-    public Produto buscarProduto(Long id) {
+    public Produto buscarTodosByID(Long id) {
         return repositorio.findById(id).get();
     }
 
-    @Override
-    public boolean salvar(Produto produto) {
-        validationsProduto.doAntesDeSalvar();
-
-        return true;
+    public String salvar(Produto produto) {
+        try {
+            if (doAntesDeSalvar(produto)) {
+                repositorio.save(produto);
+                return "produto cadastrado com sucesso";
+            } else {
+                return "não foi possivel cadastrar este produto, verifique se todos os dados foram preenchidos corretamente";
+            }   
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return e.getMessage();
+        }
     }
 
-    @Override
     public boolean alterar(Produto produto) {
-        validationsProduto.doAntesDeAlterar();
+        if (doAntesDeAlterar()) {
 
+        } else {
+
+        }
         return true;
     }
 
-    @Override
     public boolean deletar(Produto produto) {
-        validationsProduto.doAntesDeExcluir();
 
-        return true;
+        return doAntesDeExcluir();
     }
 }

@@ -8,36 +8,41 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("transportadora")
+@RestController
 class ProdutoController {
-    
+
     @Autowired
     private ServiceProduto serviceProduto;
-    
-    @GetMapping("/produtos")
-    public Iterable<Produto> getAll() {
+
+    @GetMapping("/transportadora/produtos")
+    public Iterable getAll() {
         return serviceProduto.buscarTodos();
     }
 
-    @GetMapping("/produto/{id}")
+    @GetMapping("/transportadora/produtos/{id}")
     public Produto get(@PathVariable("id") Long id) {
-        return serviceProduto.buscarProduto(id);
+        return serviceProduto.buscarTodosByID(id);
     }
 
-    @PostMapping("/produtos")
-    public String post() {
-        return "ADD PRODUTO";
+    @PostMapping("/transportadora/produtos")
+    public String post(@RequestBody Produto produto) {
+        return serviceProduto.salvar(produto);
     }
 
-    @PutMapping("/produtos")
-    public String put() {
-        return "EDITAR PRODUTO";
+    @PutMapping("/transportadora/produtos")
+    public String put(@RequestBody Produto produto) {
+        serviceProduto.alterar(produto);
+
+        return "";
     }
 
-    @DeleteMapping
-    public String delete() {
-        return "DELETAR PRODUTO";
+    @DeleteMapping("/transportadora/produtos")
+    public String delete(@RequestBody Produto produto) {
+        serviceProduto.deletar(produto);
+
+        return "";
     }
 }
