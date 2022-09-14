@@ -31,18 +31,14 @@ public class ServiceProduto implements IntfcServiceProduto {
 
     @Override
     public boolean alterar(Produto produto) {
-        if (validationsProduto.doAntesDeAlterar()) {
-
-        }
+        validationsProduto.doAntesDeAlterar();
 
         return true;
     }
 
     @Override
     public boolean deletar(Produto produto) {
-        if (validationsProduto.doAntesDeExcluir()) {
-
-        }
+        validationsProduto.doAntesDeExcluir();
 
         return true;
     }

@@ -28,7 +28,7 @@ public class ServicePessoa extends ServiceValidationsPersona {
         return repositorio.findAll();
     }
     
-    public Optional<Pessoa> buscarTodos(Long id){
+    public Optional<Pessoa> buscarTodosByID(Long id){
         return repositorio.findById(id);
     }
     

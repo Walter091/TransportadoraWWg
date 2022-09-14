@@ -27,4 +27,23 @@ public class IndexController {
     public void salvar(Pessoa pessoa) {
         servico.salvar(pessoa);
     }
+
+    @GetMapping("/home")
+    public String entrarTelaHome() {
+        // Criar a pagina html e retornar o caminho aqui...
+        return null;
+    }
+
+    @GetMapping("/cadastro")
+    public String entrarTelaCadastro() {
+        // Criar a pagina html e retornar o caminho aqui...
+        return null;
+    }
+
+    @GetMapping("/relatorios")
+    public String entrarTelaRelatorios() {
+        // Criar a pagina html e retornar o caminho aqui...
+        return null;
+    }
+
 }

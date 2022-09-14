@@ -1,7 +1,6 @@
 package br.com.gw_sistemas.transportadora_wwg.model;
 
 import br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum;
-import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
