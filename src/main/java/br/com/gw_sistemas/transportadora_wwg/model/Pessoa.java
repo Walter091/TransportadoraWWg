@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -14,18 +15,38 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "pessoa")
-public class Pessoa implements Serializable {
-    
-    private static final long serialVersionUID = 1L;
-    
+public class Pessoa {
+
+    @EqualsAndHashCode.Include
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "ID_PESSOA")
     private Long id;
-    
-    @Column(name = "NOME")
-    private String nome;
-    
-}
 
-	
+    @Column(nullable = false, name = "NOME")
+    private String nome;
+
+    @Column(unique = true, nullable = true)
+    private String CNPJ;
+
+    @Column(unique = true, nullable = true)
+    private String CPF;
+
+    @Column(nullable = true, name = "RAZAO_SOCIAL")
+    private String razaoSocial;
+
+    @Column(nullable = false, name = "CIDADE")
+    private String cidade;
+
+    @Column(nullable = false)
+    private String UF;
+
+    @Column(nullable = false, name = "BAIRRO")
+    private String bairro;
+
+    @Column(nullable = false, name = "RUA")
+    private String rua;
+
+    @Column(nullable = false, name = "NUMERO")
+    private int numero;
+
+}
