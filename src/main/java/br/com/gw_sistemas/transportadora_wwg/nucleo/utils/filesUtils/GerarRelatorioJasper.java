@@ -1,5 +1,6 @@
 package br.com.gw_sistemas.transportadora_wwg.nucleo.utils.filesUtils;
 
+import br.com.gw_sistemas.transportadora_wwg.model.Lancamento;
 import java.io.InputStream;
 import java.util.List;
 import java.util.logging.Level;
@@ -14,7 +15,7 @@ import net.sf.jasperreports.view.JasperViewer;
 
 public class GerarRelatorioJasper {
 
-    public void gerarRelatorio(List<Object> lista) throws JRException {
+    public void gerarRelatorio(List<Lancamento> lista) throws JRException {
           InputStream fonte = GerarRelatorioJasper.class.getResourceAsStream("/reports/relatorioBaseLancamento.jrxml");
           JasperReport report = null;
         try {
