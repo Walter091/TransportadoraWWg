@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 public class IndexController {
@@ -14,8 +15,8 @@ public class IndexController {
     private ServicePessoa servico;
 
     @GetMapping("/index")
-    public String index() {
-        return "home/index";
+    public ModelAndView index() {
+        return new ModelAndView("home/index");
     }
 
     @GetMapping("/buscar")
