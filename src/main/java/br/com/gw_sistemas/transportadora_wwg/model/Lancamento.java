@@ -1,6 +1,7 @@
 package br.com.gw_sistemas.transportadora_wwg.model;
 
 import br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum;
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,7 +18,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "lancamento")
-public class Lancamento {
+public class Lancamento implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @EqualsAndHashCode.Include
     @Id
@@ -27,15 +30,15 @@ public class Lancamento {
     @Column(name = "DATA_SAIDA")
     private String dataSaida;
 
-    @Column(name = "DATA_ENTREGA")
+    @Column(nullable = false, name = "DATA_ENTREGA")
     private String dataEntrega;
 
-    @Column(name = "STATUS")
+    @Column(nullable = false, name = "STATUS")
     private StatusEnum status;
 
     @ManyToOne
     @JoinColumn(name = "REMETENTE")
-    private Transportado remetente;
+    private Pessoa remetente;
 
     @ManyToOne
     @JoinColumn(name = "DESTINATARIO")

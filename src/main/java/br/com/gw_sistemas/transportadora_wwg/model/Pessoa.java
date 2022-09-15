@@ -1,5 +1,6 @@
 package br.com.gw_sistemas.transportadora_wwg.model;
 
+import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +15,9 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "pessoa")
-public class Pessoa {
+public class Pessoa implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @EqualsAndHashCode.Include
     @Id
@@ -24,19 +27,19 @@ public class Pessoa {
     @Column(nullable = false, name = "NOME")
     private String nome;
 
-    @Column(unique = true, nullable = true)
+    @Column(unique = true, name = "CNPJ")
     private String cnpj;
 
-    @Column(unique = true, nullable = true)
+    @Column(unique = true, name = "CPF")
     private String cpf;
 
-    @Column(nullable = true, name = "RAZAO_SOCIAL")
+    @Column(name = "RAZAO_SOCIAL")
     private String razaoSocial;
 
     @Column(nullable = false, name = "CIDADE")
     private String cidade;
 
-    @Column(nullable = false)
+    @Column(nullable = false, name = "UF")
     private String uf;
 
     @Column(nullable = false, name = "BAIRRO")
@@ -48,7 +51,7 @@ public class Pessoa {
     @Column(nullable = false, name = "NUMERO")
     private int numero;
 
-    @Column(name = "IND_REG")
+    @Column(nullable = false, name = "IND_REG")
     private int indReg;
 
 }
