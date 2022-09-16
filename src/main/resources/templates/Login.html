@@ -1,59 +1,65 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Login - Transportadora WWG</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
-    <title>Document</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
 
-    <!-- <link rel="stylesheet" href="./style.css"> -->
-    
-    <style>
-        .v10 {
-            margin-top: 0%;
-            background: #e7e7e7;
-            width: 30%;
-            margin:0 auto;
-            height: 40px;
-            opacity: 1;
-            top: 393px;
-            border-radius: 10px;
-            position: relative;
-        }
-    </style>
+                font-size: 14px;
+                height: 100vh;
+                overflow: hidden;
+            }
 
-</head>
+            header {
+                height: 70px;
+                background: #49BFFF;
+                text-align: center;
+                font-size: 2rem;
+                color: white;display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+    </head>
+    <body>
+        <header>
+            Transportadora WWG
+        </header>
+        <main class="">
+            <section class="img--tela--home">
+                <form style="width: 450px; margin: 0 auto;">
 
+                    <img src="imag\Trans.jpg" width="500px"style="width: 100%; text-align: center;">
 
+                    <h1 class="h3 mb-3 fw-normal" style="width: 100%; text-align: center;">Login</h1>
 
-<form style="width: 450px; margin: 0 auto;">
+                    <div class="form-floating" style="height: 64px;">
+                        <input type="email" class="form-control" id="floatingInput" placeholder="nome@exemplo.com">
+                        <label for="floatingInput">Seu email</label>
+                    </div>
+                    <div class="form-floating">
+                        <input type="password" class="form-control" id="senha" placeholder="Password">
+                        <label for="senha">Sua senha</label>
+                    </div>
 
+                    <div class="checkbox mb-3">
+                        <label>
+                            <input type="checkbox" value="remember-me"> Remember me
+                        </label>
+                    </div>
+                    <button style = "background: #49BFFF; border-color: #49BFFF" class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
 
-    <!--<img src="imag\Trans.jpg" width="500px"style="width: 100%; text-align: center;" />-->
-
-    <h1 class="h3 mb-3 fw-normal" style="width: 100%; text-align: center;">Log in</h1>
-
-    <div class="form-floating" style="height: 64px;">
-        <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com">
-        <label for="floatingInput">Email address</label>
-    </div>
-    <div class="form-floating">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
-        <label for="floatingPassword">Password</label>
-    </div>
-
-    <div class="checkbox mb-3">
-        <label>
-            <input type="checkbox" value="remember-me"> Remember me
-        </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
-
-    <p class="mt-5 mb-3 text-muted" style="width: 100%; text-align: center;">© 2022</p>
-</form>
-</body>
-
+                    <p class="mt-5 mb-3 text-muted" style="width: 100%; text-align: center;">© 2022</p>
+                </form>      
+            </section>
+        </main>
+    </body>
 </html>
