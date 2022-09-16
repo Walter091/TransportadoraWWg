@@ -12,38 +12,41 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+@RestController("/Transportadora/Opcoes")
 class ProdutoController {
 
     @Autowired
     private ServiceProduto serviceProduto;
 
-    @GetMapping("/transportadora/produtos")
-    public Iterable getAll() {
+    @GetMapping("/produtos")
+    public Iterable buscarTodos() {
         return serviceProduto.buscarTodos();
     }
 
-    @GetMapping("/transportadora/produtos/{id}")
-    public Produto get(@PathVariable("id") Long id) {
+    @GetMapping("/produtos/{id}")
+    public Produto buscarTodosByID(@PathVariable("id") Long id) {
         return serviceProduto.buscarTodosByID(id);
     }
 
-    @PostMapping("/transportadora/produtos")
-    public RetornoRequisicao post(@RequestBody Produto produto) {
-        return serviceProduto.salvar(produto);
-    }
-
-    @PutMapping("/transportadora/produtos")
-    public String put(@RequestBody Produto produto) {
-        serviceProduto.alterar(produto);
-
+    @GetMapping("/Produtos/Cadastrar")
+    public String formCadastro(@RequestBody Produto produto) {
         return "";
     }
 
-    @DeleteMapping("/transportadora/produtos")
+    @PostMapping("/Produtos/Cadastrar/Salvar")
+    public RetornoRequisicao salvar(@RequestBody Produto produto) {
+        return serviceProduto.salvar(produto);
+    }
+
+    @PutMapping("/produtos/Editar")
+    public String alterar(@RequestBody Produto produto) {
+        serviceProduto.alterar(produto);
+        return "";
+    }
+
+    @DeleteMapping("/Produtos/Delete")
     public String delete(@RequestBody Produto produto) {
         serviceProduto.deletar(produto, produto.getId());
-
         return "";
     }
 }

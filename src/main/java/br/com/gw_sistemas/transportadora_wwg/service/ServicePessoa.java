@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServicePessoa extends ServicoBase<Pessoa>  {
-    
+public class ServicePessoa extends ServicoBase<Pessoa> {
+
     @Autowired
     private RepositoryPessoa repositorio;
 
@@ -23,14 +23,18 @@ public class ServicePessoa extends ServicoBase<Pessoa>  {
         // Implementar Validações...
         Optional<Pessoa> objAlterado = repositorio.findById(obj.getId());
         objAlterado.get().setNome(obj.getNome());
-        objAlterado.get().setCpf(obj.getCpf());        
-        objAlterado.get().setCnpj(obj.getCnpj());        
-        objAlterado.get().setRazaoSocial(obj.getRazaoSocial());        
+        objAlterado.get().setCpf(obj.getCpf());
+        objAlterado.get().setCnpj(obj.getCnpj());
+        objAlterado.get().setRazaoSocial(obj.getRazaoSocial());
         objAlterado.get().setUf(obj.getUf());
-        objAlterado.get().setCidade(obj.getCidade());        
-        objAlterado.get().setBairro(obj.getBairro());        
-        
+        objAlterado.get().setCidade(obj.getCidade());
+        objAlterado.get().setBairro(obj.getBairro());
+
         super.salvar(objAlterado.get());
     }
-    
+
+    @Override
+    public Pessoa buscarTodosByID(Long id) {
+        return super.buscarTodosByID(id); //To change body of generated methods, choose Tools | Templates.
+    }
 }
