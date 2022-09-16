@@ -33,8 +33,4 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
         super.salvar(objAlterado.get());
     }
 
-    @Override
-    public Pessoa buscarTodosByID(Long id) {
-        return super.buscarTodosByID(id); //To change body of generated methods, choose Tools | Templates.
-    }
 }

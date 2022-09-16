@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/Transportadora/Opcoes")
+@RestController("/Transportadora/P/")
 public class PessoaController {
 
     @Autowired
