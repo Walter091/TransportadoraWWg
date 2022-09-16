@@ -13,7 +13,7 @@ public class RetornoRequisicao {
         this.mensagem = mensagem;
     }
 
-    public boolean isStatusRequisicao() {
+    public boolean getStatusRequisicao() {
         return statusRequisicao;
     }
 

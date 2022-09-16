@@ -12,39 +12,39 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController("/Transportadora/Opcoes")
+@RestController()
 class ProdutoController {
 
     @Autowired
     private ServiceProduto serviceProduto;
 
-    @GetMapping("/produtos")
+    @GetMapping("/transportadora-wwg/opcoes/produtos")
     public Iterable buscarTodos() {
         return serviceProduto.buscarTodos();
     }
 
-    @GetMapping("/produtos/{id}")
+    @GetMapping("/transportadora-wwg/opcoes/produtos/{id}")
     public Produto buscarTodosByID(@PathVariable("id") Long id) {
         return serviceProduto.buscarTodosByID(id);
     }
 
-    @GetMapping("/Produtos/Cadastrar")
+    @GetMapping("/transportadora-wwg/opcoes/produtos/cadastrar")
     public String formCadastro(@RequestBody Produto produto) {
         return "";
     }
 
-    @PostMapping("/Produtos/Cadastrar/Salvar")
+    @PostMapping("/transportadora-wwg/opcoes/produtos/cadastrar/salvar")
     public RetornoRequisicao salvar(@RequestBody Produto produto) {
         return serviceProduto.salvar(produto);
     }
 
-    @PutMapping("/produtos/Editar")
+    @PutMapping("/transportadora-wwg/opcoes/produtos/dditar")
     public String alterar(@RequestBody Produto produto) {
         serviceProduto.alterar(produto);
         return "";
     }
 
-    @DeleteMapping("/Produtos/Delete")
+    @DeleteMapping("/transportadora-wwg/opcoes/produtos/delete")
     public String delete(@RequestBody Produto produto) {
         serviceProduto.deletar(produto, produto.getId());
         return "";

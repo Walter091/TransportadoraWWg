@@ -3,16 +3,17 @@ package br.com.gw_sistemas.transportadora_wwg.nucleo.base;
 import br.com.gw_sistemas.transportadorawwg.nucleo.base.RetornoRequisicao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ExceptionValidacao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ValidationsEnum;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
-    
+
     @Autowired
     private RepositorioBase<T> repositorio;
-    
+
     private RetornoRequisicao requisicao = new RetornoRequisicao();
-    
-    public RetornoRequisicao salvar(T obj){
+
+    public RetornoRequisicao salvar(T obj) {
         try {
             if (doAntesDeSalvar(obj)) {
                 repositorio.save(obj);
@@ -32,9 +33,9 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
             requisicao.setStatusRequisicao(false);
 
             return requisicao;
-        }    
+        }
     }
- 
+
     public boolean alterar(T obj) {
         if (doAntesDeAlterar(obj)) {
             implementaAlterar(obj);
@@ -62,23 +63,28 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
             }
         }
         return false;
-    }   
-    
+    }
+
     public abstract void implementaDelete(Long id);
+
     public abstract void implementaAlterar(T obj);
-    
+
     // -------------------------------------------------------------------------------------------------------------------------
-    
     public Iterable<T> buscarTodos() {
         return repositorio.findAll();
     }
 
     public T buscarTodosByID(Long id) {
-        return repositorio.findById(id).get();
+        try {
+            List<T> itens = (List<T>) repositorio.findById(id).get();
+            return (T) itens;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
     }
-    
-    // -------------------------------------------------------------------------------------------------------------------------
 
+    // -------------------------------------------------------------------------------------------------------------------------
     @Override
     public boolean doAntesDeSalvar(T obj) {
         // Imnplementar Validções nos filhos...
@@ -96,5 +102,5 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
         // Imnplementar Validções nos filhos...
         return true;
     }
-    
+
 }
