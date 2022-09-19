@@ -10,6 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface RepositoryUsuarioLog extends RepositorioBase<UsuarioLog>{
     
       
-    @Query(value = "SELECT * FROM usuarioLog WHERE NOME_USUARIO= :nomeUsuario AND EMAIL= :email AND SENHA= :senha", nativeQuery = true) 
-    public UsuarioLog buscarUsuarioComCredenciais(@Param("nomeUsuario") String nomeUsuario, @Param("email") String email, @Param("senha") String senha);
+    @Query(value = "SELECT * FROM usuario_log WHERE EMAIL=:email AND SENHA=:senha", nativeQuery = true) 
+    public UsuarioLog buscarUsuarioComCredenciais(@Param("email") String email, @Param("senha") String senha);
 }

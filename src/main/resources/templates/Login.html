@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-br" xmlns:th="http://www.thymeleaf.org">
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,6 +27,9 @@
                 align-items: center;
                 justify-content: center;
             }
+            #divMsgError{
+                margin-left: 20px;
+            }
         </style>
     </head>
     <body>
@@ -35,18 +38,18 @@
         </header>
         <main class="">
             <section class="img--tela--home">
-                <form style="width: 450px; margin: 0 auto;">
+                <form action="#" th:action="@{/transportadora-wwg/login/entrar}" th:object="${usuarioLog}" method="GET" style="width: 450px; margin: 0 auto;">
 
                     <img src="imag\Trans.jpg" width="500px"style="width: 100%; text-align: center;">
 
                     <h1 class="h3 mb-3 fw-normal" style="width: 100%; text-align: center;">Conecte-se</h1>
 
                     <div class="form-floating" style="height: 64px;">
-                        <input type="email" class="form-control" id="floatingInput" placeholder="nome@exemplo.com">
+                        <input type="email" th:field="*{email}" class="form-control" id="floatingInput" required="true" placeholder="nome@exemplo.com">
                         <label for="floatingInput">Seu email</label>
                     </div>
                     <div class="form-floating">
-                        <input type="password" class="form-control" id="senha" placeholder="Password">
+                        <input type="password" th:field="*{senha}" class="form-control" id="senha" required="true"  placeholder="Password">
                         <label for="senha">Sua senha</label>
                     </div>
 
@@ -61,5 +64,8 @@
                 </form>      
             </section>
         </main>
+        <div id="divMsgError" th:each="m : ${msgError}">
+                <span style="color:black;" th:text="${m}"></span>
+        </div>
     </body>
 </html>
