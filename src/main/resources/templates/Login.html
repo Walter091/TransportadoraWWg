@@ -26,9 +26,32 @@
                 color: white;display: flex;
                 align-items: center;
                 justify-content: center;
+            }            
+
+            main {
+                height: 100%;
+                width: 100vw;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                position: relative;
             }
-            #divMsgError{
-                margin-left: 20px;
+
+            main form {
+                width: 450px;
+                height: 500px;
+
+            }
+
+            main form .card--input {
+                margin-bottom: 20px;
+            }
+
+            .dv--erro {
+                position: absolute;
+                top: 10px;
+                width: 100%;
+                width: 40%;
             }
         </style>
     </head>
@@ -36,36 +59,38 @@
         <header>
             Transportadora WWG
         </header>
-        <main class="">
-            <section class="img--tela--home">
-                <form action="#" th:action="@{/transportadora-wwg/login/entrar}" th:object="${usuarioLog}" method="GET" style="width: 450px; margin: 0 auto;">
+        <main>
+            <form th:action="@{/transportadora-wwg/login/entrar}" th:object="${usuarioLog}" th:method="post">
 
-                    <img src="imag\Trans.jpg" width="500px"style="width: 100%; text-align: center;">
+                <h1 class="h3 mb-3 fw-normal" style="width: 100%; text-align: center;">Conecte-se</h1>
 
-                    <h1 class="h3 mb-3 fw-normal" style="width: 100%; text-align: center;">Conecte-se</h1>
+                <div class="form-floating card--input" style="height: 64px;">
+                    <input type="email" th:field="*{email}" class="form-control" id="floatingInput" required="true" placeholder="nome@exemplo.com">
+                    <label for="email">Seu email</label>
+                </div>
+                <div class="form-floating card--input">
+                    <input type="password" th:field="*{senha}" class="form-control" id="senha" required="true"  placeholder="Sua senha">
+                    <label for="senha">Sua senha</label>
+                </div>
 
-                    <div class="form-floating" style="height: 64px;">
-                        <input type="email" th:field="*{email}" class="form-control" id="floatingInput" required="true" placeholder="nome@exemplo.com">
-                        <label for="floatingInput">Seu email</label>
-                    </div>
-                    <div class="form-floating">
-                        <input type="password" th:field="*{senha}" class="form-control" id="senha" required="true"  placeholder="Password">
-                        <label for="senha">Sua senha</label>
-                    </div>
+                <div class="checkbox mb-3">
+                    <label>
+                        <input type="checkbox" value="remember-me"> Lembra senha
+                    </label>
+                </div>
+                <button style = "background: #49BFFF; border-color: #49BFFF" class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
 
-                    <div class="checkbox mb-3">
-                        <label>
-                            <input type="checkbox" value="remember-me"> Remember me
-                        </label>
-                    </div>
-                    <button style = "background: #49BFFF; border-color: #49BFFF" class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+                <p class="mt-5 mb-3 text-muted" style="width: 100%; text-align: center;">© 2022</p>
+            </form>      
 
-                    <p class="mt-5 mb-3 text-muted" style="width: 100%; text-align: center;">© 2022</p>
-                </form>      
-            </section>
+
+            <div th:e="${requisicao}"  class="dv--erro">
+                <div th:each="req : ${requisicao}"  class="alert alert-danger" >
+                    [[${req.getMensagem}]]
+                </div>
+            </div>
+           
         </main>
-        <div id="divMsgError" th:each="m : ${msgError}">
-                <span style="color:black;" th:text="${m}"></span>
-        </div>
+
     </body>
 </html>

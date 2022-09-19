@@ -1,6 +1,6 @@
 package br.com.gw_sistemas.transportadora_wwg.nucleo.base;
 
-import br.com.gw_sistemas.transportadorawwg.nucleo.base.RetornoRequisicao;
+import br.com.gw_sistemas.transportadorawwg.nucleo.base.Requisicao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ExceptionValidacao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ValidationsEnum;
 import java.util.List;
@@ -11,15 +11,15 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
     @Autowired
     private RepositorioBase<T> repositorio;
 
-    private RetornoRequisicao requisicao = new RetornoRequisicao();
+    private Requisicao requisicao = new Requisicao();
 
-    public RetornoRequisicao salvar(T obj) {
+    public Requisicao salvar(T obj) {
         try {
             if (doAntesDeSalvar(obj)) {
                 repositorio.save(obj);
 
                 requisicao.setMensagem("Sucesso na persistência da Entidade!!");
-                requisicao.setStatusRequisicao(true);
+                requisicao.setStatus(true);
 
                 return requisicao;
             } else {
@@ -30,7 +30,7 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
             System.out.println(e.getMessage());
 
             requisicao.setMensagem(e.getMessage());
-            requisicao.setStatusRequisicao(false);
+            requisicao.setStatus(false);
 
             return requisicao;
         }
