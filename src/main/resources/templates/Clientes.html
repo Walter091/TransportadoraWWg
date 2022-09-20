@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Clientes - Transportadora WWG</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+              integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+
+        <!-- Faixa -->
+        <style>
+            header {
+                height: 70px;
+                background: #49BFFF;
+                text-align: center;
+                font-size: 2rem;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            main {
+                width: 1200px;
+                height: 700px;
+                margin: 0 auto;
+            }
+
+            main .pesquisa {
+                display: flex;
+                justify-content: space-between;
+                padding: 20px 0;
+            }
+
+            main .card--conteudo {
+                padding-top: 50px;
+            }
+
+            main .card--conteudo table th {
+                background-color: #49BFFF;
+                color: #000;
+                text-align: center;
+            }
+
+
+            nav {
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+        </style>
+
+    </head>
+
+    <body>
+        <header>
+            Transportadora WWG
+        </header>
+
+        <main>
+            <section class="pesquisa">
+                <div class="d-flex" role="Search">
+                    <input class="form-control me-2" type="Search" placeholder="buscar por codigo" aria-label="Search">
+                    <button class="btn btn-outline-success" type="submit">buscar</button>
+                </div>
+
+                <a>
+                    <button type="button" class="btn btn-success">Novo Clientes</button>
+                </a>
+            </section>
+
+            <section class="card--conteudo">
+                <table class="table table-striped table-hover">
+                    <tr>
+                        <th style="color: #fff;">Codigo</th>
+                        <th style="color: #fff;">Data Saida</th>
+                        <th style="color: #fff;">Data Entrega</th>
+                        <th style="color: #fff;">Status</th>
+                        <th style="color: #fff;">Dados Remetente</th>
+                        <th style="color: #fff;">Dados Destinatario</th>
+                        <th style="color: #fff;">Opções</th>
+                    </tr>
+                    <tr>
+                        <td>01</td>
+                        <td>09/11/2022</td>
+                        <td></td>
+                        <td>Em Transito</td>
+                        <td>GW Sistemas - 773.642.149/0001-48</td>
+                        <td>Willames Santos - 894.693.380-14</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Deletar</button>
+                            <button type="button" class="btn btn-info">Editar</button>
+                        </td>
+                    </tr>        
+                    <tr>
+                        <td>03</td>
+                        <td>09/11/2022</td>
+                        <td></td>
+                        <td>Em Transito</td>
+                        <td>GW Sistemas - 773.642.149/0001-48</td>
+                        <td>Willames Santos - 894.693.380-14</td>
+                        <td>
+                            <button type="button" class="btn btn-danger">Deletar</button>
+                            <button type="button" class="btn btn-info">Editar</button>
+                        </td>
+                    </tr>     
+                </table>
+            </section>
+        </main>
+
+
+        <!-- Navegação de pagina -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" style="background: #49BFFF;" href="#" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" style="background: #49BFFF;" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </body>
+</html>

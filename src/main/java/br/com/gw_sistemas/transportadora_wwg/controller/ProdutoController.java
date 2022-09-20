@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController()
 class ProdutoController {
@@ -19,13 +20,20 @@ class ProdutoController {
     private ServiceProduto serviceProduto;
 
     @GetMapping("/transportadora-wwg/opcoes/produtos")
-    public Iterable buscarTodos() {
-        return serviceProduto.buscarTodos();
+    public ModelAndView buscarTodos() {
+        ModelAndView pgProdutos = new ModelAndView("Produtos");
+        pgProdutos.addObject("produtos",serviceProduto.buscarTodos());
+        
+        return  pgProdutos;
     }
+         
 
     @GetMapping("/transportadora-wwg/opcoes/produtos/{id}")
-    public Produto buscarTodosByID(@PathVariable("id") Long id) {
-        return serviceProduto.buscarTodosByID(id);
+    public ModelAndView buscarTodosByID(@PathVariable("id") Long id) {
+        ModelAndView pgProdutos = new ModelAndView("Produtos");
+        pgProdutos.addObject("produtos",serviceProduto.buscarTodosByID(id));
+        
+        return  pgProdutos;
     }
 
     @GetMapping("/transportadora-wwg/opcoes/produtos/cadastrar")

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController()
 public class PessoaController {
@@ -17,25 +18,34 @@ public class PessoaController {
     private ServicePessoa servicoPessoa;
 
     @GetMapping("/transportadora-wwg/opcoes/clientes")
-    public Iterable buscar() {
-        return servicoPessoa.buscarTodos();
+    public ModelAndView buscar() {
+        ModelAndView pgClientes = new ModelAndView("Clientes");
+        pgClientes.addObject("clientes", servicoPessoa.buscarTodos());
+        
+        return pgClientes;
     }
-    
-        @GetMapping("/transportadora-wwg/opcoes/clientes/{id}")
-    public Pessoa buscarTodosByID(@PathVariable("id") Long id) {
-        return servicoPessoa.buscarTodosByID(id);
+
+    @GetMapping("/transportadora-wwg/opcoes/clientes/{id}")
+    public ModelAndView buscarTodosByID(@PathVariable("id") Long id) {
+        ModelAndView pgClientes = new ModelAndView("Clientes");
+        pgClientes.addObject("clientes", servicoPessoa.buscarTodosByID(id));
+        
+        return pgClientes;
     }
-    
+
     @GetMapping("/transportadora-wwg/opcoes/clientes/cadastrar")
-    public String formCadastro() {
-        return "";
+    public ModelAndView formCadastro() {
+        ModelAndView pgFormClientes = new ModelAndView("FormClientes");
+        pgFormClientes.addObject("pessoa", new Pessoa());
+        
+        return pgFormClientes;
     }
-    
+
     @PostMapping("/transportadora-wwg/opcoes/clientes/cadastrar/salvar")
     public void salvar(Pessoa pessoa) {
         servicoPessoa.salvar(pessoa);
     }
-    
+
     @PutMapping("/transportadora-wwg/opcoes/Clientes/Editar")
     public String alterar() {
         return "";
