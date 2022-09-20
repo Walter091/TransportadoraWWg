@@ -27,7 +27,7 @@ public class LancamentoController {
         ModelAndView pgRalatorios = new ModelAndView("Relatorios");
         List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.buscarTodos();
         
-        pgRalatorios.addObject("todosLancamentos", todosLancamentos);
+        pgRalatorios.addObject("listLancamentos", todosLancamentos);
         return pgRalatorios;
     }
 
@@ -61,13 +61,19 @@ public class LancamentoController {
     }
 
     @PutMapping("/transportadora-wwg/opcoes/lancamentos/editar")
-    public String alterar() {
-        return "";
+    public ModelAndView alterar(@PathVariable("id") Long id) {
+        Lancamento obj = serviceLancamento.buscarTodosByID(id);
+        serviceLancamento.alterar(obj);
+        ModelAndView pgFormLancamentos = new ModelAndView("FormLancamentos");
+        return pgFormLancamentos;
     }
 
     @DeleteMapping("/transportadora-wwg/opcoes/lancamentos/delete")
-    public String delete() {
-        return "";
+    public ModelAndView delete(@PathVariable("id") Long id) {
+        Lancamento obj = serviceLancamento.buscarTodosByID(id);
+        serviceLancamento.deletar(obj, obj.getId());
+        ModelAndView pgLancamentos = new ModelAndView("Relatorios");
+        return pgLancamentos;
     }
     
     @GetMapping("/transportadora-wwg/lancamento/exportarPdf")

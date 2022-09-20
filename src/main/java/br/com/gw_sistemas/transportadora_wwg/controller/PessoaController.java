@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
 
 @RestController()
 public class PessoaController {
@@ -21,10 +22,11 @@ public class PessoaController {
     @GetMapping("/transportadora-wwg/opcoes/clientes")
     public ModelAndView buscar() {
         ModelAndView pgClientes = new ModelAndView("Clientes");
-        pgClientes.addObject("clientes", servicoPessoa.buscarTodos());
+        pgClientes.addObject("listClients", servicoPessoa.buscarTodos());
         
         return pgClientes;
     }
+    
     @GetMapping("/transportadora-wwg/opcoes/clientesCadastrados")
     public Iterable<Pessoa> buscarClients() {
         return servicoPessoa.buscarTodos();
@@ -51,13 +53,19 @@ public class PessoaController {
         servicoPessoa.salvar(pessoa);
     }
 
-    @PutMapping("/transportadora-wwg/opcoes/Clientes/Editar")
-    public String alterar() {
-        return "";
+    @PutMapping("/transportadora-wwg/opcoes/Clientes/Editar/{id}")
+    public ModelAndView alterar(@PathVariable("id") Long id, Model model) {
+        Pessoa obj = servicoPessoa.buscarTodosByID(id);
+        servicoPessoa.alterar(obj);
+        ModelAndView pgClientes = new ModelAndView("FormClientes");
+        return pgClientes;
     }
 
-    @DeleteMapping("/transportadora-wwg/opcoes/Clientes/Delete")
-    public String delete() {
-        return "";
+    @DeleteMapping("/transportadora-wwg/opcoes/Clientes/Delete/{id}")
+    public ModelAndView delete(@PathVariable("id") Long id) {
+        Pessoa obj = servicoPessoa.buscarTodosByID(id);
+        servicoPessoa.deletar(obj, obj.getId());
+        ModelAndView pgClientes = new ModelAndView("clientes");
+        return pgClientes;
     }
 }

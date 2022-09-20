@@ -32,5 +32,4 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
 
         super.salvar(objAlterado.get());
     }
-
 }
