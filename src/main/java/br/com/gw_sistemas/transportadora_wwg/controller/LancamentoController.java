@@ -41,14 +41,12 @@ public class LancamentoController {
     }
     
     @GetMapping("/transportadora-wwg/opcoes/lancamentos/cadastrar")
-    public ModelAndView formCadastro(@ModelAttribute("lancamento") Lancamento lancamento, Model model) {
-        Iterable<Pessoa> lsDestinatario = serviceLancamento.getListPessoas();
-        model.addAttribute("listDestinatarios", lsDestinatario == null ? " " : lsDestinatario);
-
-        Iterable<Pessoa> lsRemetente = serviceLancamento.getListPessoas();
-        model.addAttribute("listRemetente", lsRemetente == null ? " " : lsRemetente);
-
-        return new ModelAndView("FormLancamentos");
+    public ModelAndView formCadastro(@ModelAttribute("lancamento") Lancamento lancamento, Model model) {  
+        ModelAndView pgLacamento =new ModelAndView("FormLancamentos");
+        pgLacamento.addObject("lancamento", new Lancamento());
+        pgLacamento.addObject("listPessoas", serviceLancamento.getListPessoas());
+        
+        return pgLacamento;
     }
 
     @PostMapping("/transportadora-wwg/opcoes/lancamentos/cadastrar/salvar")
