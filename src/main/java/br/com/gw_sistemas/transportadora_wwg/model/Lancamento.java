@@ -2,6 +2,7 @@ package br.com.gw_sistemas.transportadora_wwg.model;
 
 import br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum;
 import java.io.Serializable;
+import java.time.LocalDate;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,10 +29,10 @@ public class Lancamento implements Serializable {
     private Long id;
 
     @Column(name = "DATA_SAIDA")
-    private String dataSaida;
+    private LocalDate dataSaida;
 
-    @Column(nullable = false, name = "DATA_ENTREGA")
-    private String dataEntrega;
+    @Column(name = "DATA_ENTREGA")
+    private LocalDate dataEntrega;
 
     @Column(nullable = false, name = "STATUS")
     private StatusEnum status;

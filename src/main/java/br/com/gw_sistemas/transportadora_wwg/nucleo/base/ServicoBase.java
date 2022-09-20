@@ -42,7 +42,7 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
             return true;
         } else {
             try {
-                throw new Exception("Falha na Exclusão!");
+                throw new Exception("Falha na Alteração!");
             } catch (Exception ex) {
                 new ExceptionValidacao(ValidationsEnum.NULL_POINTER, ex.getMessage());
             }
@@ -66,10 +66,10 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
     }
 
     public abstract void implementaDelete(Long id);
-
     public abstract void implementaAlterar(T obj);
 
     // -------------------------------------------------------------------------------------------------------------------------
+    
     public Iterable<T> buscarTodos() {
         return repositorio.findAll();
     }
@@ -85,6 +85,7 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
     }
 
     // -------------------------------------------------------------------------------------------------------------------------
+  
     @Override
     public boolean doAntesDeSalvar(T obj) {
         // Imnplementar Validções nos filhos...

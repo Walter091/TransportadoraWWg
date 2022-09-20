@@ -5,6 +5,7 @@ import br.com.gw_sistemas.transportadora_wwg.service.ServicePessoa;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -24,6 +25,10 @@ public class PessoaController {
         
         return pgClientes;
     }
+    @GetMapping("/transportadora-wwg/opcoes/clientesCadastrados")
+    public Iterable<Pessoa> buscarClients() {
+        return servicoPessoa.buscarTodos();
+    }
 
     @GetMapping("/transportadora-wwg/opcoes/clientes/{id}")
     public ModelAndView buscarTodosByID(@PathVariable("id") Long id) {
@@ -42,7 +47,7 @@ public class PessoaController {
     }
 
     @PostMapping("/transportadora-wwg/opcoes/clientes/cadastrar/salvar")
-    public void salvar(Pessoa pessoa) {
+    public void salvar(@ModelAttribute("pessoa") Pessoa pessoa) {
         servicoPessoa.salvar(pessoa);
     }
 

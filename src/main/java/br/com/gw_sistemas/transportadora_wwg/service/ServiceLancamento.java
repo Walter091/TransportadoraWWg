@@ -2,8 +2,10 @@ package br.com.gw_sistemas.transportadora_wwg.service;
 
 import br.com.gw_sistemas.transportadora_wwg.funcionalidades.relatorios.CreateReports;
 import br.com.gw_sistemas.transportadora_wwg.model.Lancamento;
+import br.com.gw_sistemas.transportadora_wwg.model.Pessoa;
 import br.com.gw_sistemas.transportadora_wwg.nucleo.base.ServicoBase;
 import br.com.gw_sistemas.transportadora_wwg.repositorys.RepositoryLancamento;
+import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,9 +37,27 @@ public class ServiceLancamento extends ServicoBase<Lancamento> {
 
     // -------------------------------------------------------------------------
     
-    public void gerarRelatorio(){        
+    public void gerarRelatorio(List<Lancamento> lista){        
         CreateReports report = new CreateReports();
-        report.criarRelatorio(repositorio.findAll());
+        report.criarRelatorio(lista);
+    }
+
+    @Override
+    public boolean doAntesDeSalvar(Lancamento obj) {
+        if (obj.getDataSaida().equals(obj.getDataEntrega())) return false;
+        
+        obj.getDataSaida().compareTo(obj.getDataEntrega());
+        if (obj.getDataSaida().compareTo(obj.getDataEntrega()) == -1) return false;
+        return true; 
+    }
+
+    // -------------------------------------------------------------------------
+    
+    @Autowired
+    private ServicePessoa servicoPessoa;
+    
+    public Iterable<Pessoa> getListPessoas(){
+        return servicoPessoa.buscarTodos();
     }
     
 }

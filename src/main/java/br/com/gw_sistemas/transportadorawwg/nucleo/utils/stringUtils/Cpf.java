@@ -1,4 +1,4 @@
-package br.com.gw_sistemas.transportadora_wwg.nucleo.utils.stringUtils;
+package br.com.gw_sistemas.transportadorawwg.nucleo.utils.stringUtils;
 
 
 public class Cpf {

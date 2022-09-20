@@ -25,7 +25,7 @@
     <body onload="checkTypePerson()">
 
         <header>
-            Transportadora WWG
+            CADASTRO DE CLIENTE
         </header>
         <div class="container-md">
             <div class="col-md-8 order-md-1">
@@ -35,95 +35,95 @@
                         <input class="form-check-input" type="radio" name="exampleRadios" id="person-legal" checked
                                onchange="checkTypePerson()">
                             <label class="form-check-label" for="person-legal">
-                                Person legal
+                                Pessoa Jurídica
                             </label>
                     </div>
                     <div class="form-check">
                         <input class="form-check-input" type="radio" name="exampleRadios" id="person-natural"
                                onchange="checkTypePerson()">
                             <label class="form-check-label" for="person">
-                                Person natural
+                                Pessoa Física
                             </label>
                     </div>
                 </div>
-                <form id="form-person-natural" action="#" th:action="@{/gw-systems/clients/form-clients/save}" method="post"
+                <form id="form-person-natural" action="#" th:action="@{/gw-systems/clients/form-clients/save}" method="POST"
                       th:object="${pessoa}">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Name</label>
+                            <label for="inputEmail4">Nome</label>
                             <input type="text" class="form-control" placeholder="Your name" th:field="*{nome}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">CPF</label>
-                            <input type="text" class="form-control" placeholder="150.807..." th:field="*{CPF}">
+                            <input type="text" class="form-control" placeholder="150.807..." th:field="*{cpf}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress">Street</label>
-                        <input type="text" class="form-control" placeholder="1234 Main St" th:field="*{street}">
+                        <label for="inputAddress">Rua</label>
+                        <input type="text" class="form-control" placeholder="1234 Main St" th:field="*{rua}">
                     </div>
                     <div class="form-row" style="display: flex; gap: 10px;">
                         <div class="form-group">
-                            <label for="inputAddress">Number</label>
-                            <input type="number" class="form-control" placeholder="1234 Main St" th:field="*{number}">
+                            <label for="inputAddress">Número</label>
+                            <input type="number" class="form-control" placeholder="1234 Main St" th:field="*{numero}">
                         </div>
                         <div class="form-group">
-                            <label for="inputAddress2" style="width: 497px;">Neighborhood</label>
+                            <label for="inputAddress2" style="width: 497px;">Bairro</label>
                             <input type="text" class="form-control" placeholder="Your Neighborhood"
-                                   th:field="*{neighborhood}">
+                                   th:field="*{bairro}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" th:field="*{city}">
+                            <label for="inputCity">Cidade</label>
+                            <input type="text" class="form-control" th:field="*{cidade}">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputZip">UF</label>
-                            <input type="text" class="form-control" placeholder="Example: PE" th:field="*{UF}">
+                            <input type="text" class="form-control" placeholder="Example: PE" th:field="*{uf}">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">save</button>
                 </form>
-                <form id="form-person-legal" action="#" th:action="@{/gw-systems/clients/form-clients/save}" method="post"
-                      th:object="${client_class}">
+                <form id="form-person-legal" action="#" th:action="@{/gw-systems/clients/form-clients/save}" method="POST"
+                      th:object="${pessoa}">
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputEmail4">Name</label>
-                            <input type="text" class="form-control" placeholder="Your name" th:field="*{name}">
+                            <label for="inputEmail4">Nome</label>
+                            <input type="text" class="form-control" placeholder="Your name" th:field="*{nome}">
                         </div>
                         <div class="form-group col-md-6">
                             <label for="inputPassword4">CNPJ</label>
-                            <input type="text" class="form-control" placeholder="77.073.664/..." th:field="*{CNPJ}">
+                            <input type="text" class="form-control" placeholder="77.073.664/..." th:field="*{cnpj}">
                         </div>
                         <div class="form-group col-md-6">
-                            <label for="inputPassword4">Reason social</label>
-                            <input type="text" class="form-control" placeholder="Reason social" th:field="*{reasonSocial}">
+                            <label for="inputPassword4">Razão social</label>
+                            <input type="text" class="form-control" placeholder="Reason social" th:field="*{razaoSocial}">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputAddress">Street</label>
-                        <input type="text" class="form-control" placeholder="1234 Main St" th:field="*{street}">
+                        <label for="inputAddress">Rua</label>
+                        <input type="text" class="form-control" placeholder="1234 Main St" th:field="*{rua}">
                     </div>
                     <div class="form-row" style="display: flex; gap: 10px;">
                         <div class="form-group">
-                            <label for="inputAddress">Number</label>
-                            <input type="number" class="form-control" placeholder="1234 Main St" th:field="*{number}">
+                            <label for="inputAddress">Número</label>
+                            <input type="number" class="form-control" placeholder="1234 Main St" th:field="*{numero}">
                         </div>
                         <div class="form-group">
-                            <label for="inputAddress2" style="width: 497px;">Neighborhood</label>
+                            <label for="inputAddress2" style="width: 497px;">Bairro</label>
                             <input type="text" class="form-control" placeholder="Your Neighborhood"
-                                   th:field="*{neighborhood}">
+                                   th:field="*{bairro}">
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-6">
-                            <label for="inputCity">City</label>
-                            <input type="text" class="form-control" th:field="*{city}">
+                            <label for="inputCity">Cidade</label>
+                            <input type="text" class="form-control" th:field="*{cidade}">
                         </div>
                         <div class="form-group col-md-2">
                             <label for="inputZip">UF</label>
-                            <input type="text" class="form-control" placeholder="Example: PE" th:field="*{UF}">
+                            <input type="text" class="form-control" placeholder="Example: PE" th:field="*{uf}">
                         </div>
                     </div>
                     <button type="submit" class="btn btn-primary">save</button>
