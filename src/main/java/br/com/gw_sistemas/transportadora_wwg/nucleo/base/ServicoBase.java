@@ -1,6 +1,5 @@
 package br.com.gw_sistemas.transportadora_wwg.nucleo.base;
 
-import br.com.gw_sistemas.transportadorawwg.nucleo.base.Requisicao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ExceptionValidacao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ValidationsEnum;
 import java.util.List;
@@ -11,17 +10,12 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
     @Autowired
     private RepositorioBase<T> repositorio;
 
-    private Requisicao requisicao = new Requisicao();
-
-    public Requisicao salvar(T obj) {
+    public boolean salvar(T obj) {
         try {
             if (doAntesDeSalvar(obj)) {
                 repositorio.save(obj);
 
-                requisicao.setMensagem("Sucesso na persistência da Entidade!!");
-                requisicao.setStatus(true);
-
-                return requisicao;
+                return true;
             } else {
 
                 throw new Exception("Falha na persisteência! Verifique se as informações estão corretas.");
@@ -29,10 +23,7 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
         } catch (Exception e) {
             System.out.println(e.getMessage());
 
-            requisicao.setMensagem(e.getMessage());
-            requisicao.setStatus(false);
-
-            return requisicao;
+            return false;
         }
     }
 
@@ -66,10 +57,10 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
     }
 
     public abstract void implementaDelete(Long id);
+
     public abstract void implementaAlterar(T obj);
 
     // -------------------------------------------------------------------------------------------------------------------------
-    
     public Iterable<T> buscarTodos() {
         return repositorio.findAll();
     }
@@ -85,7 +76,6 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
     }
 
     // -------------------------------------------------------------------------------------------------------------------------
-  
     @Override
     public boolean doAntesDeSalvar(T obj) {
         // Imnplementar Validções nos filhos...

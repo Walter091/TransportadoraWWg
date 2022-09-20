@@ -2,7 +2,6 @@ package br.com.gw_sistemas.transportadora_wwg.controller;
 
 import br.com.gw_sistemas.transportadora_wwg.model.Lancamento;
 import br.com.gw_sistemas.transportadora_wwg.service.ServiceLancamento;
-import br.com.gw_sistemas.transportadorawwg.nucleo.base.Requisicao;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import br.com.gw_sistemas.transportadora_wwg.model.Pessoa;
 import org.springframework.ui.Model;
+import org.springframework.web.servlet.view.RedirectView;
 
 @RestController()
 public class LancamentoController {
@@ -22,7 +22,7 @@ public class LancamentoController {
     @Autowired
     private ServiceLancamento serviceLancamento;
 
-    @GetMapping("/transportadora-wwg/lancamentos")
+    @GetMapping("/transportadora-wwg/opcoes/lancamentos")
     public ModelAndView buscar() {
         ModelAndView pgRalatorios = new ModelAndView("Relatorios");
         List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.buscarTodos();
@@ -31,7 +31,7 @@ public class LancamentoController {
         return pgRalatorios;
     }
 
-    @GetMapping("/transportadora-wwg/lancamentos/{id}")
+    @GetMapping("/transportadora-wwg/opcoes/lancamentos/{id}")
     public ModelAndView buscarTodosByID(@PathVariable("id") Long id) {
         ModelAndView pgRalatorios = new ModelAndView("Relatorios");
         List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.buscarTodosByID(id);
@@ -52,8 +52,12 @@ public class LancamentoController {
     }
 
     @PostMapping("/transportadora-wwg/opcoes/lancamentos/cadastrar/salvar")
-    public Requisicao salvar(@ModelAttribute("lancamento") Lancamento lancamento) {
-        return serviceLancamento.salvar(lancamento);        
+    public RedirectView salvar(@ModelAttribute("lancamento") Lancamento lancamento) {
+        if(serviceLancamento.salvar(lancamento)) {
+            return new RedirectView("/transportadora-wwg/opcoes/lancamentos");
+        }else {
+            return new RedirectView("");
+        }
     }
 
     @PutMapping("/transportadora-wwg/opcoes/lancamentos/editar")
