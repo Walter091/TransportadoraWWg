@@ -9,15 +9,24 @@
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
             <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-size: 14px;
+                    height: 100vh;
+                    padding-top: 70px;
+                }
+
                 header {
                     height: 70px;
                     background: #49BFFF;
                     text-align: center;
                     font-size: 2rem;
                     color: white;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    width: 100%;
+                    position: fixed;
+                    top: 0;
                 }
             </style>
     </head>
@@ -25,7 +34,9 @@
     <body onload="checkTypePerson()">
 
         <header>
-            CADASTRO DE LANÇAMENTOS
+            <h1>
+                CADASTRO DE LANÇAMENTOS
+            </h1>
         </header>
         <div class="container-md">
             <div class="col-md-8 order-md-1">
@@ -45,15 +56,15 @@
                     <div class="form-group">
                         <label for="seleDest">Selecione o Destinatário do Lançamento:</label>
                         <select id="seleDest" th:field="*{destinatario}" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option th:each="destinatariols : ${listDestinatarios}"
-                                        th:value="${destinatariols.id}" th:text="${destinatariols.nome}" required="true"></option>
+                            <option th:each="destinatariols : ${listDestinatarios}"
+                                    th:value="${destinatariols.id}" th:text="${destinatariols.nome}" required="true"></option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="seleDest">Selecione o Remetente do Lançamento:</label>
                         <select id="seleDest" th:field="*{remetente}" class="form-select form-select-sm" aria-label=".form-select-sm example">
-                                <option th:each="remtentels : ${listRemetente}"
-                                        th:value="${remetentels.id}" th:text="${remetentels.nome}" required="true"></option>
+                            <option th:each="remtentels : ${listRemetente}"
+                                    th:value="${remetentels.id}" th:text="${remetentels.nome}" required="true"></option>
                         </select>
                     </div>
                     <div class="form-row" style="display: flex; gap: 10px;">
@@ -64,11 +75,11 @@
                     </div>
                     <div class="form-row" style="display: flex; gap: 10px;">
                         <select th:field="*{status}"class="form-select form-select-sm" aria-label=".form-select-sm example" >
-				<option th:each="status : ${T( br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum).values()}"
-                                        th:value="${status.id}" th:text="${status.descricao}" selected="selected">
-                                            
-                                </option>
-			</select> 
+                            <option th:each="status : ${T( br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum).values()}"
+                                    th:value="${status.id}" th:text="${status.descricao}" selected="selected">
+
+                            </option>
+                        </select> 
                     </div>
                     <button type="submit" class="btn btn-primary">Salvar</button>
                 </form>

@@ -12,10 +12,9 @@
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
-
                 font-size: 14px;
                 height: 100vh;
-                overflow: hidden;
+                padding-top: 65px;
             }
 
             header {
@@ -23,96 +22,101 @@
                 background: #49BFFF;
                 text-align: center;
                 font-size: 2rem;
-                color: white;display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            main {
-                display: flex;
-                height: 100%;
-                width: 1200px;
-                margin: 0 auto;
-            }
-
-            .img--tela--home {
-                flex: 1;
-                display: flex;
-                align-items: center;
-            }
-
-            .img--tela--home img {
-                width: 520px;
-                padding-bottom: 80px;
-            }
-
-            .opcoes--home {
-                flex: 1.5;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-direction: column;
-                gap: 20px;
-                padding-bottom: 80px;
-            }
-
-            .opcoes--home .card--opcoes {
-                display: flex;
-                gap: 20px;
-            }
-
-            .opcoes--home .card--opcoes .butoes--opcoes {
-                background-color: #49BFFF;
                 color: white;
+                width: 100%;
+                position: fixed;
+                top: 0;
+            }
+
+            header h1 {
+                height: 100%;
+                width: 100%;
                 display: flex;
                 align-items: center;
                 justify-content: center;
-                width: 300px;
-                height: 120px;
-                border-radius: 15px;
-                font-size: 1.8rem;
-                cursor: pointer;
-                transition: .2s;      
             }
 
-            .opcoes--home .card--opcoes .butoes--opcoes:hover {
-                transform: scale(1.05);
+            main {;
+                  width: 1200px;
+                  margin: auto;
+            }
+
+            .opcoes--home h1{
+                width: 100%;
+                padding: 15px 0;
+            }
+
+            .opcoes--home .card--opcoes  {
+                height: 180px;
+                padding: 20px;
+                width: 1000px;
+            }
+
+            .opcoes--home .card--opcoes h1 {
+                font-size: 1.8rem;
+            }
+
+            .opcoes--home .card--opcoes p {
+                font-size: 1rem;
+            }
+
+            .opcoes--home .card--opcoes a {
+                width: 200px
+            }
+
+            .opcoes--home .card--opcoes .btn--servico {
+                width: 100%;
+                display: flex;
+                justify-content: end;
+            }
+
+            .opcoes--home .card--opcoes .btn--servico a {
+                padding: 5px
             }
 
         </style>
     </head>
     <body>
         <header>
-            Transportadora WWG - Serviços
+            <h1>
+                Transportadora WWG - Serviços
+            </h1>
         </header>
-        <main class="">
-            <section class="img--tela--home">
-                <img src="./img/img-home.png" alt="">       
-            </section>
-            <section class="opcoes--home">
 
-                <div class="card--opcoes">
-                    <div class="butoes--opcoes">
-                        Cadastro
-                    </div>
-                    <div class="butoes--opcoes">
-                        <a th:href="@{/transportadora-wwg/opcoes/produtos}">
-                        Produtos
-                        </a>
+        <main class="">
+            <section class="opcoes--home">
+                <h1>
+                    Serviços
+                </h1>
+                <div class="bg-light rounded mt-2 card--opcoes">
+                    <h1>Gera lançamento</h1>
+                    <p class="lead">This example is a quick exercise to illustrate how the bottom navbar works.</p>
+                    <div class="btn--servico">
+                        <a class="btn btn-lg btn-info" style="color: #fff" th:href="@{/transportadora-wwg/opcoes/lancamentos/cadastrar}" role="button">Gera »</a>
                     </div>
                 </div>
-                <div class="card--opcoes">
 
-                    <div class="butoes--opcoes">
-                        <a th:href="@{/transportadora-wwg/lancamentos}">
-                            Relatorios
-                        </a>
+                <div class="bg-light rounded mt-2 card--opcoes">
+                    <h1>Clientes</h1>
+                    <p class="lead">This example is a quick exercise to illustrate how the bottom navbar works.</p>
+                    <div class="btn--servico">
+                        <a class="btn btn-lg btn-info" style="color: #fff" th:href="@{/transportadora-wwg/opcoes/clientes}" role="button">Clientes »</a>
                     </div>
+                </div>
 
-                    <div class="butoes--opcoes">
-                        <a th:href="@{/transportadora-wwg/opcoes/clientes}">
-                        Clientes
-                        </a>
+                <div class="bg-light rounded mt-2 card--opcoes">
+                    <h1>Produtos</h1>
+                    <p class="lead">This example is a quick exercise to illustrate how the bottom navbar works.</p>
+                    <div class="btn--servico">
+                        <a class="btn btn-lg btn-info" style="color: #fff" th:href="@{/transportadora-wwg/opcoes/produtos}" role="button">Produtos »</a>
+                    </div>
+                </div> 
+
+                <div class="bg-light rounded mt-2 card--opcoes">
+                    <h1>Lançamentos</h1>
+                    <p class="lead">This example is a quick exercise to illustrate how the bottom navbar works.</p>
+                    <div class="btn--servico">
+                        <a class="btn btn-lg btn-info" style="color: #fff" th:href="@{/transportadora-wwg/opcoes/lancamentos}" role="button">Lançamentos »</a>
                     </div>
                 </div>
 

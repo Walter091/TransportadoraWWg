@@ -9,15 +9,24 @@
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
 
             <style>
+                body {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-size: 14px;
+                    height: 100vh;
+                    padding-top: 70px;
+                }
+
                 header {
                     height: 70px;
                     background: #49BFFF;
                     text-align: center;
                     font-size: 2rem;
                     color: white;
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
+                    width: 100%;
+                    position: fixed;
+                    top: 0;
                 }
             </style>
     </head>
@@ -25,7 +34,9 @@
     <body onload="checkTypePerson()">
 
         <header>
-            CADASTRO DE CLIENTE
+            <h1>
+                CADASTRO DE CLIENTE
+            </h1>
         </header>
         <div class="container-md">
             <div class="col-md-8 order-md-1">

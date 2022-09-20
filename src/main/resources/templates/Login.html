@@ -12,10 +12,9 @@
                 margin: 0;
                 padding: 0;
                 box-sizing: border-box;
-
                 font-size: 14px;
                 height: 100vh;
-                overflow: hidden;
+                padding-top: 70px;
             }
 
             header {
@@ -23,10 +22,11 @@
                 background: #49BFFF;
                 text-align: center;
                 font-size: 2rem;
-                color: white;display: flex;
-                align-items: center;
-                justify-content: center;
-            }            
+                color: white;
+                width: 100%;
+                position: fixed;
+                top: 0;
+            }           
 
             main {
                 height: 100%;
@@ -57,7 +57,9 @@
     </head>
     <body>
         <header>
-            Transportadora WWG
+            <h1>
+                Transportadora WWG
+            </h1>
         </header>
         <main>
             <form th:action="@{/transportadora-wwg/login/entrar}" th:object="${usuarioLog}" th:method="POST">
@@ -89,7 +91,7 @@
                     [[${req.getMensagem}]]
                 </div>
             </div>
-           
+
         </main>
 
     </body>
