@@ -18,21 +18,21 @@ public class IndexController {
     @Autowired
     private ServiceUsuarioLog serviceUsuarioLog;
 
-    @GetMapping(value = {"/transportadora-wwg", "/transportadora-wwg/login"})
+    @GetMapping("/transportadora-wwg")
     public ModelAndView index() {
-        
+
+        return new ModelAndView("Home");
+    }
+
+    @GetMapping("/transportadora-wwg/login")
+    public ModelAndView home() {
         ModelAndView pgLogin = new ModelAndView("Login");
         pgLogin.addObject("usuarioLog", new UsuarioLog());
-        
+
         return pgLogin;
     }
 
-    @GetMapping("/transportadora-wwg/home")
-    public ModelAndView home() {
-        return new ModelAndView("Home");
-    }
-    
-    @GetMapping("/transportadora-wwg/home/opcoes")
+    @GetMapping("/transportadora-wwg/opcoes")
     public ModelAndView opcoes() {
         return new ModelAndView("Opcoes");
     }
@@ -40,7 +40,7 @@ public class IndexController {
     @PostMapping("/transportadora-wwg/login/entrar")
     public RedirectView entrarNoHome(@ModelAttribute("usuarioLog") UsuarioLog usuarioLog, Model model) {
         if (serviceUsuarioLog.entrar(usuarioLog)) {
-            return new RedirectView("/transportadora-wwg/home");
+            return new RedirectView("/transportadora-wwg");
         } else {
             return new RedirectView("/transportadora-wwg/login");
         }

@@ -30,12 +30,33 @@
                 top: 0;
             }
 
-            header h1 {
+            header nav {
+                width: 1200px;
                 height: 100%;
-                width: 100%;
+                margin: 0 auto;
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                align-items:  center;
+                justify-content: space-between;
+            }
+
+            header nav a {
+                height: 80%;
+                transition: .2s;
+                text-decoration: none;
+            }
+
+            header nav a button:hover {
+                transform: scale(1.01);
+            }
+
+            header nav .btn--login {
+                background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
+                border: none;
+                border-radius: 5px;
+                font-size: 1.2rem;
+                color: white;
+                width: 200px;
+                padding: 3px 0;
             }
 
             main {
@@ -73,9 +94,17 @@
 
     <body>
         <header>
-            <h1>
-                Transportadora WWG - RELATÓRIO
-            </h1>
+            <nav>
+                <h1>
+                    Transportadora WWG - Lançamentos
+                </h1>
+
+                <a th:href="@{/transportadora-wwg/opcoes}" class="d-inline-flex p-2">
+                    <button type="button" class="btn--login">
+                        Serviços
+                    </button>
+                </a>
+            </nav>
         </header>
 
         <main>

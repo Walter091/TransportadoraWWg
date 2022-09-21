@@ -28,12 +28,53 @@
                 top: 0;
             }
 
-            header h1 {
-                height: 100%;
+            header nbody {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                font-size: 14px;
+                height: 100vh;
+                padding-top: 65px;
+            }
+
+            header {
+                height: 70px;
+                background: #49BFFF;
+                text-align: center;
+                font-size: 2rem;
+                color: white;
                 width: 100%;
+                position: fixed;
+                top: 0;
+            }
+
+            header nav {
+                width: 1200px;
+                height: 100%;
+                margin: 0 auto;
                 display: flex;
-                align-items: center;
-                justify-content: center;
+                align-items:  center;
+                justify-content: space-between;
+            }
+
+            header nav a {
+                height: 80%;
+                transition: .2s;
+                text-decoration: none;
+            }
+
+            header nav a button:hover {
+                transform: scale(1.01);
+            }
+
+            header nav .btn--login {
+                background-color: RGBA(33,37,41,var(--bs-bg-opacity,1));
+                border: none;
+                border-radius: 5px;
+                font-size: 1.2rem;
+                color: white;
+                width: 200px;
+                padding: 3px 0;
             }
 
             main {;
@@ -43,7 +84,7 @@
 
             .opcoes--home h1{
                 width: 100%;
-                padding: 15px 0;
+                padding: 10px 0;
             }
 
             .opcoes--home .card--opcoes  {
@@ -78,9 +119,17 @@
     </head>
     <body>
         <header>
-            <h1>
-                Transportadora WWG - Serviços
-            </h1>
+            <nav>
+                <h1>
+                    Transportadora WWG - Lançamentos
+                </h1>
+
+                <a th:href="@{/transportadora-wwg}" class="d-inline-flex p-2">
+                    <button type="button" class="btn--login">
+                        Home
+                    </button>
+                </a>
+            </nav>
         </header>
 
         <main class="">

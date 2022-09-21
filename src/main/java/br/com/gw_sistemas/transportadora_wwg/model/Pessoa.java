@@ -24,7 +24,7 @@ public class Pessoa implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(nullable = false, name = "NOME")
+    @Column(name = "NOME")
     private String nome;
 
     @Column(unique = true, name = "CNPJ")

@@ -10,36 +10,36 @@
 
             <style>
                 body {
-                margin: 0;
-                padding: 0;
-                box-sizing: border-box;
-                font-size: 14px;
-                height: 100vh;
-                padding-top: 65px;
-            }
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                    font-size: 14px;
+                    height: 100vh;
+                    padding-top: 65px;
+                }
 
-            header {
-                height: 70px;
-                background: #49BFFF;
-                text-align: center;
-                font-size: 2rem;
-                color: white;
-                width: 100%;
-                position: fixed;
-                top: 0;
-            }
+                header {
+                    height: 70px;
+                    background: #49BFFF;
+                    text-align: center;
+                    font-size: 2rem;
+                    color: white;
+                    width: 100%;
+                    position: fixed;
+                    top: 0;
+                }
 
-            header h1 {
-                height: 100%;
-                width: 100%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
+                header h1 {
+                    height: 100%;
+                    width: 100%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
             </style>
     </head>
 
-    <body onload="checkTypePerson()">
+    <body onload="checarTipoPessoa()">
 
         <header>
             <h1>
@@ -49,124 +49,97 @@
         <div class="container-md">
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-4" style="margin-top: 5rem;">Client</h4>
-                <div style="display: flex; gap: 30px; margin-bottom: 1rem;">
+                <div style="display: flex; gap: 20px; margin-bottom: 1rem;">
+
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="person-legal" 
-                               onchange="checkTypePerson()">
-                            <label class="form-check-label" for="person-legal">
-                                Pessoa Jurídica
-                            </label>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="pessoa-fisica" checked onchange="checarTipoPessoa()">
+                        <label class="form-check-label" for="person">
+                            Pessoa Física
+                        </label>
                     </div>
+
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="exampleRadios" id="person-natural" checked
-                               onchange="checkTypePerson()">
-                            <label class="form-check-label" for="person">
-                                Pessoa Física
-                            </label>
+                        <input class="form-check-input" type="radio" name="exampleRadios" id="pessoa-juridica" onchange="checarTipoPessoa()">
+                        <label class="form-check-label" for="person-legal">
+                            Pessoa Jurídica
+                        </label>
                     </div>
                 </div>
-                <form id="form-person-natural" action="#" th:action="@{/transportadora-wwg/opcoes/clientes/cadastrar/salvar}" method="POST"
-                      th:object="${pessoa}">
-                    <div class="form-row" style="display: flex; gap: 10px;">
-                        <div class="form-group">
-                            <label for="inputId">Código</label>
-                            <input type="number" class="form-control" readonly placeholder="Código" th:field="*{id}">
-                        </div>
-                    </div>
+
+                <form action="#" th:action="@{/transportadora-wwg/opcoes/clientes/cadastrar/salvar}" method="POST" th:object="${pessoa}">
+
                     <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputEmail4">Nome</label>
-                            <input type="text" class="form-control" placeholder="Seu nome" th:field="*{nome}">
+                        <div class="form-row" id="form-pessoa-juridica">
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">CNPJ</label>
+                                <input type="text" class="form-control" placeholder="77.073.664/..." th:field="*{cnpj}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">Razão social</label>
+                                <input type="text" class="form-control" placeholder="Ração social" th:field="*{razaoSocial}">
+                            </div>
                         </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">CPF</label>
-                            <input type="text" class="form-control" placeholder="150.807..." th:field="*{cpf}" >
+
+                        <div class="form-row" id="form-pessoa-fisica">
+                            <div class="form-group col-md-6">
+                                <label for="inputEmail4">Nome</label>
+                                <input type="text" class="form-control" placeholder="Seu nome" th:field="*{nome}">
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label for="inputPassword4">CPF</label>
+                                <input type="text" class="form-control" placeholder="150.807..." th:field="*{cpf}" >
+                            </div>
                         </div>
                     </div>
-                    <div class="form-group">
+
+                    <div class="form-row">
                         <label for="inputAddress">Rua</label>
                         <input type="text" class="form-control" placeholder="Sua rua" th:field="*{rua}">
                     </div>
+
                     <div class="form-row" style="display: flex; gap: 10px;">
                         <div class="form-group">
                             <label for="inputAddress">Número</label>
-                            <input type="number" class="form-control" placeholder="1234" th:field="*{numero}">
+                            <input type="number" min="0"  class="form-control" placeholder="1234" th:field="*{numero}">
                         </div>
                         <div class="form-group">
                             <label for="inputAddress2" style="width: 497px;">Bairro</label>
-                            <input type="text" class="form-control" placeholder="Seu bairro"
-                                   th:field="*{bairro}">
+                            <input type="text" class="form-control" placeholder="Seu bairro" th:field="*{bairro}">
                         </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Cidade</label>
+
+                    <div class="form-row" style="display: flex; gap: 10px;">
+                        <div class="form-group">
+                            <label for="inputCity" style="width: 497px;">Cidade</label>
                             <input type="text" class="form-control" th:field="*{cidade}">
                         </div>
-                        <div class="form-group col-md-2">
+                        <div class="form-group">
                             <label for="inputZip">UF</label>
                             <input type="text" class="form-control" placeholder="PE" th:field="*{uf}">
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary">save</button>
-                </form>
-                <form id="form-person-legal" action="#" th:action="@{/transportadora-wwg/opcoes/clientes/cadastrar/salvar}" method="POST" 
-                      th:object="${pessoa}" hidden>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">CNPJ</label>
-                            <input type="text" class="form-control" placeholder="77.073.664/..." th:field="*{cnpj}">
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputPassword4">Razão social</label>
-                            <input type="text" class="form-control" placeholder="Ração social" th:field="*{razaoSocial}">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="inputAddress">Rua</label>
-                        <input type="text" class="form-control" placeholder="Sua rua" th:field="*{rua}">
-                    </div>
-                    <div class="form-row" style="display: flex; gap: 10px;">
-                        <div class="form-group">
-                            <label for="inputAddress">Número</label>
-                            <input type="number" class="form-control" placeholder="1234" th:field="*{numero}">
-                        </div>
-                        <div class="form-group">
-                            <label for="inputAddress2" style="width: 497px;">Bairro</label>
-                            <input type="text" class="form-control" placeholder="Seu bairro"
-                                   th:field="*{bairro}">
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputCity">Cidade</label>
-                            <input type="text" class="form-control" th:field="*{cidade}">
-                        </div>
-                        <div class="form-group col-md-2">
-                            <label for="inputZip">UF</label>
-                            <input type="text" class="form-control" placeholder="PE" th:field="*{uf}">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-primary">save</button>
+
+                    <button type="submit" style="width: 200px; margin-left: 0;" class="btn btn-primary">Cadastrar</button>
+
                 </form>
             </div>
         </div>
 
         <script>
 
-            const checkTypePerson = () => {
-                var personLegal = document.getElementById("person-legal");
-                var personNatural = document.getElementById("person-natural")
+            const checarTipoPessoa = () => {
+                var pessoaJuridica = document.getElementById("pessoa-juridica");
+                var pessoaFisica = document.getElementById("pessoa-fisica")
 
-                var formPersonLegal = document.getElementById("form-person-legal");
-                var formPersonNatural = document.getElementById("form-person-natural");
+                var formPessoaJuridica = document.getElementById("form-pessoa-juridica");
+                var formPessoaFisica = document.getElementById("form-pessoa-fisica");
 
-                if (personLegal.checked) {
-                    formPersonLegal.hidden = false
-                    formPersonNatural.hidden = true
-                } else if (personNatural.checked) {
-                    formPersonLegal.hidden = true
-                    formPersonNatural.hidden = false
+                if (pessoaJuridica.checked) {
+                    formPessoaJuridica.hidden = false;
+                    formPessoaFisica.hidden = true;
+                } else if (pessoaFisica.checked) {
+                    formPessoaJuridica.hidden = true;
+                    formPessoaFisica.hidden = false;
                 }
             }
         </script>
