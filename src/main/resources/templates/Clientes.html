@@ -113,10 +113,10 @@
                            <td th:text="${client.cidade}"></td>
                            <td th:text="${client.uf}"></td>
                             <td>
-                                <a th:href="@{/transportadora-wwg/opcoes/Clientes/Editar/{id}(id=${client.id})}" th:method="PUT" class="btn btn-primary">Alterar</a>
+                                <a th:href="@{/transportadora-wwg/opcoes/Clientes/Editar/{id}(id=${client.id})}" th:method="GET" class="btn btn-primary">Alterar</a>
                             </td>
                             <td>
-                                <a th:href="@{/indexLancamento/excluir/{id}(id=${client.id})}" th:method="DELETE" class="btn btn-danger">Excluir</a>
+                                <a th:href="@{/transportadora-wwg/opcoes/Clientes/Delete/{id}(id=${client.id})}" th:method="GET" class="btn btn-danger">Excluir</a>
                             </td>
                         </tr>
                     </tbody>

@@ -3,6 +3,7 @@ package br.com.gw_sistemas.transportadora_wwg.nucleo.base;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ExceptionValidacao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ValidationsEnum;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
@@ -63,6 +64,10 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
     // -------------------------------------------------------------------------------------------------------------------------
     public Iterable<T> buscarTodos() {
         return repositorio.findAll();
+    }
+
+    public Optional<T> buscarPorId(Long id) {
+        return repositorio.findById(id);
     }
 
     public T buscarTodosByID(Long id) {

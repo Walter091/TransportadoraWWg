@@ -29,13 +29,13 @@ public class Lancamento implements Serializable {
     private Long id;
 
     @Column(name = "DATA_SAIDA")
-    private LocalDate dataSaida;
+    private String dataSaida;
 
     @Column(name = "DATA_ENTREGA")
-    private LocalDate dataEntrega;
+    private String dataEntrega;
 
     @Column(nullable = false, name = "STATUS")
-    private StatusEnum status;
+    private String status;
 
     @ManyToOne
     @JoinColumn(name = "REMETENTE")

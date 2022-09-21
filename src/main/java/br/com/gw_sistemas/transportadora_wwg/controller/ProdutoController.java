@@ -1,31 +1,34 @@
 package br.com.gw_sistemas.transportadora_wwg.controller;
 
+import br.com.gw_sistemas.transportadora_wwg.enums.StatusFormularioEnum;
 import br.com.gw_sistemas.transportadora_wwg.model.Produto;
 import br.com.gw_sistemas.transportadora_wwg.service.ServiceProduto;
+import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
+import org.springframework.ui.Model;
 
 @RestController()
 class ProdutoController {
 
     @Autowired
     private ServiceProduto serviceProduto;
+    
+    private StatusFormularioEnum statusFormulario;
 
     @GetMapping("/transportadora-wwg/opcoes/produtos")
     public ModelAndView buscarTodos() {
         ModelAndView pgProdutos = new ModelAndView("Produtos");
-        pgProdutos.addObject("produtos",serviceProduto.buscarTodos());
+        pgProdutos.addObject("listProdutos", serviceProduto.buscarListaProduto());
         
         return  pgProdutos;
     }
-         
 
     @GetMapping("/transportadora-wwg/opcoes/produtos/{id}")
     public ModelAndView buscarTodosByID(@PathVariable("id") Long id) {
@@ -36,24 +39,37 @@ class ProdutoController {
     }
 
     @GetMapping("/transportadora-wwg/opcoes/produtos/cadastrar")
-    public String formCadastro(@RequestBody Produto produto) {
-        return "";
+    public ModelAndView formCadastro() {
+        statusFormulario = StatusFormularioEnum.SALVAR;
+        ModelAndView pgFormProduto = new ModelAndView("FormProdutos");
+        pgFormProduto.addObject("produto", new Produto());
+        
+        return pgFormProduto;
     }
 
     @PostMapping("/transportadora-wwg/opcoes/produtos/cadastrar/salvar")
-    public String salvar(@RequestBody Produto produto) {
-        return "";//serviceProduto.salvar(produto);
+    public RedirectView salvar(@ModelAttribute("produto") Produto produto) {
+        if (statusFormulario == StatusFormularioEnum.SALVAR)  serviceProduto.salvar(produto);
+        else if (statusFormulario == StatusFormularioEnum.ALTERAR) serviceProduto.alterar(produto);
+ 
+        return new RedirectView("/transportadora-wwg/opcoes/produtos");
     }
 
-    @PutMapping("/transportadora-wwg/opcoes/produtos/dditar")
-    public String alterar(@RequestBody Produto produto) {
-        serviceProduto.alterar(produto);
-        return "";
+    @GetMapping("/transportadora-wwg/opcoes/produtos/editar/{id}")
+    public ModelAndView alterar(@PathVariable("id") Long id, Model model) {
+        statusFormulario = StatusFormularioEnum.ALTERAR;
+        Optional<Produto> obj = serviceProduto.buscarPorId(id);
+
+        ModelAndView pgProdutos = new ModelAndView("FormProdutos");
+        pgProdutos.addObject("produto", obj.get());
+        return pgProdutos;
     }
 
-    @DeleteMapping("/transportadora-wwg/opcoes/produtos/delete")
-    public String delete(@RequestBody Produto produto) {
-        serviceProduto.deletar(produto, produto.getId());
-        return "";
+    @GetMapping("/transportadora-wwg/opcoes/produtos/delete/{id}")
+    public RedirectView delete(@PathVariable("id") Long id) {
+        Optional<Produto> obj = serviceProduto.buscarPorId(id);
+        serviceProduto.deletar(obj.get(), obj.get().getId());
+        return new RedirectView("/transportadora-wwg/opcoes/produtos");
     }
+    
 }

@@ -73,35 +73,42 @@
 
                     <div class="form-group">
                         <label for="inputProduto">Produto</label>
-                        <input type="text" class="form-control" placeholder="Nome do Produto" th:field="*{produto.nome}">
+                        <select id="inputProduto" th:field="*{produto}" class="form-control">
+                            <option th:each="p : ${listProdutos}" th:value="${p.id}" selected>
+                                [[${p.id}]] - [[${p.nome}]]
+                            </option>
+                        </select>
                     </div>
 
 
                     <div class="form-group">
-                        <label for="inputAddressee">Destinatario</label>
-                        <select id="inputAddressee" th:field="*{destinatario}" class="form-control">
-                            <option th:each="p : ${listPessoas}" th:value="${p.id}" selected>
+                        <label for="inputDestinatario">Destinatario</label>
+                        <select id="inputDestinatario" th:field="*{destinatario}" class="form-control">
+                            <option th:each="p : ${listPessoas}"  th:if="${p.cpf}" th:value="${p.id}" selected>
                                 [[${p.nome}]] - [[${p.cpf}]]
+                            </option>
+                            <option th:each="p : ${listPessoas}" th:unless="${p.cpf}" th:value="${p.id}" selected>
+                                [[${p.nome}]] - [[${p.cnpj}]]
                             </option>
                         </select>
                     </div>   
 
                     <div class="form-group">
-                        <label for="inputAddressee">Remetente</label>
-                        <select id="inputAddressee" th:field="*{remetente}" class="form-control">
+                        <label for="inputRemetente">Remetente</label>
+                        <select id="inputRemetente" th:field="*{remetente}" class="form-control">
                             <option th:each="p : ${listPessoas}" th:if="${p.cpf}" th:value="${p.id}" selected>
                                 [[${p.nome}]] - [[${p.cpf}]]
                             </option>
                             <option th:each="p : ${listPessoas}" th:unless="${p.cpf}" th:value="${p.id}" selected>
-                                [[${p.nome}]] - [[${p.cpf}]]
+                                [[${p.nome}]] - [[${p.cnpj}]]
                             </option>
                         </select>
                     </div>   
 
                     <div class="form-group">
-                        <label for="inputAddressee">Status Inicial</label>
-                        <select id="inputAddressee" th:field="*{status}" class="form-control">
-                            <option th:each="status : ${T( br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum).values()}" th:value="${status.id}" th:text="${status.descricao}"
+                        <label for="inputStatus">Status Inicial</label>
+                        <select id="inputStatus" th:field="*{status}" class="form-control">
+                            <option th:each="status : ${T( br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum).values()}" th:value="${status.descricao}" th:text="${status.descricao}"
                                     selected> </option>
                         </select>
                     </div>                

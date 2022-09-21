@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
-import br.com.gw_sistemas.transportadora_wwg.model.Pessoa;
 import org.springframework.ui.Model;
 import org.springframework.web.servlet.view.RedirectView;
 
@@ -45,7 +44,7 @@ public class LancamentoController {
         ModelAndView pgLacamento =new ModelAndView("FormLancamentos");
         pgLacamento.addObject("lancamento", new Lancamento());
         pgLacamento.addObject("listPessoas", serviceLancamento.getListPessoas());
-        
+        pgLacamento.addObject("listProdutos", serviceLancamento.getListProdutos());        
         return pgLacamento;
     }
 
@@ -58,7 +57,7 @@ public class LancamentoController {
         }
     }
 
-    @PutMapping("/transportadora-wwg/opcoes/lancamentos/editar")
+    @PutMapping("/transportadora-wwg/opcoes/lancamentos/editar/{id}")
     public ModelAndView alterar(@PathVariable("id") Long id) {
         Lancamento obj = serviceLancamento.buscarTodosByID(id);
         serviceLancamento.alterar(obj);
@@ -66,12 +65,11 @@ public class LancamentoController {
         return pgFormLancamentos;
     }
 
-    @DeleteMapping("/transportadora-wwg/opcoes/lancamentos/delete")
-    public ModelAndView delete(@PathVariable("id") Long id) {
+    @DeleteMapping("/transportadora-wwg/opcoes/lancamentos/delete/{id}")
+    public RedirectView delete(@PathVariable("id") Long id) {
         Lancamento obj = serviceLancamento.buscarTodosByID(id);
         serviceLancamento.deletar(obj, obj.getId());
-        ModelAndView pgLancamentos = new ModelAndView("Relatorios");
-        return pgLancamentos;
+        return new RedirectView("/transportadora-wwg/opcoes/lancamentos");
     }
     
     @GetMapping("/transportadora-wwg/lancamento/exportarPdf")

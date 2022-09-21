@@ -11,4 +11,8 @@ public interface RepositoryProduto extends RepositorioBase<Produto> {
     
     @Query(value = "UPDATE produto SET IND_REG= 1 WHERE id= :id", nativeQuery = true) 
     public void deleteUpdate(@Param("id") Long id);
+
+    @Query(value = "SELECT * FROM produto WHERE IND_REG= 0", nativeQuery = true) 
+    public Iterable<Produto> buscarLista();
+   
 }
