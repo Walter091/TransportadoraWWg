@@ -6,6 +6,7 @@ import br.com.gw_sistemas.transportadora_wwg.model.Pessoa;
 import br.com.gw_sistemas.transportadora_wwg.model.Produto;
 import br.com.gw_sistemas.transportadora_wwg.nucleo.base.ServicoBase;
 import br.com.gw_sistemas.transportadora_wwg.repositorys.RepositoryLancamento;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,9 +39,9 @@ public class ServiceLancamento extends ServicoBase<Lancamento> {
 
     // -------------------------------------------------------------------------
     
-    public void gerarRelatorio(List<Lancamento> lista){        
+    public void gerarRelatorio(List<Lancamento> lista, OutputStream saida){        
         CreateReports report = new CreateReports();
-        report.criarRelatorio(lista);
+        report.criarRelatorio(lista, saida);
     }
 
     @Override

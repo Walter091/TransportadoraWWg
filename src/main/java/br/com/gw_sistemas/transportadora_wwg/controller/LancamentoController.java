@@ -2,7 +2,9 @@ package br.com.gw_sistemas.transportadora_wwg.controller;
 
 import br.com.gw_sistemas.transportadora_wwg.model.Lancamento;
 import br.com.gw_sistemas.transportadora_wwg.service.ServiceLancamento;
+import java.io.IOException;
 import java.util.List;
+import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 @RestController()
@@ -73,9 +76,9 @@ public class LancamentoController {
     }
     
     @GetMapping("/transportadora-wwg/lancamento/exportarPdf")
-    public void exportarPdf() {
+    public void exportarPdf(HttpServletResponse response) throws IOException {        
         List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.buscarTodos();
-        serviceLancamento.gerarRelatorio(todosLancamentos);
+        serviceLancamento.gerarRelatorio(todosLancamentos, response.getOutputStream());
     }
     
 }
