@@ -19,7 +19,7 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
                 return true;
             } else {
 
-                throw new Exception("Falha na persisteência! Verifique se as informações estão corretas.");
+                throw new Exception("Falha na persistência! Verifique se as informações estão corretas.");
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());

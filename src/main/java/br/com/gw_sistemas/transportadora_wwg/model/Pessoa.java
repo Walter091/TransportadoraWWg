@@ -52,6 +52,6 @@ public class Pessoa implements Serializable {
     private int numero;
 
     @Column(name = "IND_REG")
-    private int indReg;
+    private int indReg = 0;
 
 }

@@ -6,13 +6,14 @@ public class Cnpj {
     
     public String removerMascara(String str){ return str.replaceAll("\\D", ""); }
 
-    public boolean isCNPJ(String CNPJ) {
-        if (CNPJ.equals("00000000000000") || CNPJ.equals("11111111111111") ||
-            CNPJ.equals("22222222222222") || CNPJ.equals("33333333333333") ||
-            CNPJ.equals("44444444444444") || CNPJ.equals("55555555555555") ||
-            CNPJ.equals("66666666666666") || CNPJ.equals("77777777777777") ||
-            CNPJ.equals("88888888888888") || CNPJ.equals("99999999999999") ||
-           (CNPJ.length() != 14))
+    public boolean isCNPJ(String cnpj) {
+        String cnpjFormatado = removerMascara(cnpj);
+        if (cnpjFormatado.equals("00000000000000") || cnpjFormatado.equals("11111111111111") ||
+            cnpjFormatado.equals("22222222222222") || cnpjFormatado.equals("33333333333333") ||
+            cnpjFormatado.equals("44444444444444") || cnpjFormatado.equals("55555555555555") ||
+            cnpjFormatado.equals("66666666666666") || cnpjFormatado.equals("77777777777777") ||
+            cnpjFormatado.equals("88888888888888") || cnpjFormatado.equals("99999999999999") ||
+           (cnpjFormatado.length() != 14))
            return(false);
 
         char dig13, dig14;
@@ -22,7 +23,7 @@ public class Cnpj {
           sm = 0;
           peso = 2;
           for (i=11; i>=0; i--) {
-            num = (int)(CNPJ.charAt(i) - 48);
+            num = (int)(cnpjFormatado.charAt(i) - 48);
             sm = sm + (num * peso);
             peso = peso + 1;
             if (peso == 10)
@@ -37,7 +38,7 @@ public class Cnpj {
           sm = 0;
           peso = 2;
           for (i=12; i>=0; i--) {
-            num = (int)(CNPJ.charAt(i)- 48);
+            num = (int)(cnpjFormatado.charAt(i)- 48);
             sm = sm + (num * peso);
             peso = peso + 1;
             if (peso == 10)
@@ -49,7 +50,7 @@ public class Cnpj {
              dig14 = '0';
           else dig14 = (char)((11-r) + 48);
 
-          if ((dig13 == CNPJ.charAt(12)) && (dig14 == CNPJ.charAt(13)))
+          if ((dig13 == cnpjFormatado.charAt(12)) && (dig14 == cnpjFormatado.charAt(13)))
              return(true);
           else return(false);
         } catch (InputMismatchException erro) {

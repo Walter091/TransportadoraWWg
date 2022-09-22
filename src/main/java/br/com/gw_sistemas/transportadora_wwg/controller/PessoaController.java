@@ -45,19 +45,30 @@ public class PessoaController {
 
     @GetMapping("/transportadora-wwg/opcoes/clientes/cadastrar")
     public ModelAndView formCadastro() {
-        statusFormulario = StatusFormularioEnum.SALVAR;
         ModelAndView pgFormClientes = new ModelAndView("FormClientes");
         pgFormClientes.addObject("pessoa", new Pessoa());
-        
+        if (statusFormulario == StatusFormularioEnum.EM_ERRO) {
+            pgFormClientes.addObject("msgError", servicoPessoa.getERRO());
+            
+        }
+              
         return pgFormClientes;
     }
     
     @PostMapping("/transportadora-wwg/opcoes/clientes/cadastrar/salvar")
     public RedirectView salvar(@ModelAttribute("pessoa") Pessoa pessoa) {
-        if (statusFormulario == StatusFormularioEnum.SALVAR)  servicoPessoa.salvar(pessoa);
-        else if (statusFormulario == StatusFormularioEnum.ALTERAR) servicoPessoa.alterar(pessoa);
-        
-        return new RedirectView("/transportadora-wwg/opcoes/clientes");
+        if (statusFormulario == StatusFormularioEnum.ALTERAR) {
+            servicoPessoa.alterar(pessoa);
+            return new RedirectView("/transportadora-wwg/opcoes/clientes");
+        } else {
+            if (servicoPessoa.salvar(pessoa)) {
+                return new RedirectView("/transportadora-wwg/opcoes/clientes");
+            } else {
+                statusFormulario = StatusFormularioEnum.EM_ERRO;
+                return new RedirectView("/transportadora-wwg/opcoes/clientes/cadastrar");
+            }
+            
+        }
     }
     
     @GetMapping("/transportadora-wwg/opcoes/Clientes/Editar/{id}")

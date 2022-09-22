@@ -93,13 +93,11 @@
                 <p class="mt-5 mb-3 text-muted" style="width: 100%; text-align: center;">© 2022</p>
             </form>      
 
-
-            <div th:e="${requisicao}"  class="dv--erro">
-                <div th:each="req : ${requisicao}"  class="alert alert-danger" >
-                    [[${req.getMensagem}]]
+            <div id="divMsgError" class="dv--erro">
+                <div th:each="m : ${msgError}"  class="alert alert-danger" >
+                    <span style="color:black;" th:text="${m}"></span>
                 </div>
             </div>
-
         </main>
 
     </body>

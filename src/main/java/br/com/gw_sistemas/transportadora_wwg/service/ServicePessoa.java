@@ -3,9 +3,13 @@ package br.com.gw_sistemas.transportadora_wwg.service;
 import br.com.gw_sistemas.transportadora_wwg.model.Pessoa;
 import br.com.gw_sistemas.transportadora_wwg.nucleo.base.ServicoBase;
 import br.com.gw_sistemas.transportadora_wwg.repositorys.RepositoryPessoa;
+import br.com.gw_sistemas.transportadorawwg.nucleo.utils.stringUtils.Cnpj;
+import br.com.gw_sistemas.transportadorawwg.nucleo.utils.stringUtils.Cpf;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ExceptionValidacao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ValidationsEnum;
 import java.util.Optional;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,7 +18,11 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
 
     @Autowired
     private RepositoryPessoa repositorio;
-
+    
+    @Getter
+    @Setter
+    public String ERRO = " ";
+    
     @Override
     public void implementaDelete(Long id) {
         try {
@@ -45,4 +53,59 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
         return repositorio.buscarLista();
     }
     
+    // ------------------------------------------------------------------------
+
+    @Override
+    public boolean doAntesDeSalvar(Pessoa obj) {
+        boolean result  = false;
+        if (!obj.getCpf().isEmpty() || obj.getCpf().length() >  0) {
+            if (validarCpfPessoa(obj.getCpf())) result = true;
+            else {
+                setERRO("CPF Inválido");
+                obj.setCpf(null);
+                result = false;
+            }
+        }
+        if (!obj.getCnpj().isEmpty() || obj.getCnpj().length() >  0) {
+            if (validarCnpjPessoa(obj.getCnpj())) result = true;
+            else {
+                setERRO("CNPJ Inválido");
+                obj.setCnpj(null);
+                result = false;
+            }
+        }
+        return result;
+    }
+    
+    public boolean validarCpfPessoa(String cpf){
+        // Vallidando CPF...
+        boolean result = false;
+        Cpf validation = new Cpf();
+        if (validation.isValidCpf(cpf)) {
+            result = true;
+        } 
+
+        if (repositorio.validarCpf(cpf) == null) {
+            setERRO("CPF JÁ CADASTRADO...");
+            result = false;
+        } 
+
+        return result;
+    }
+    
+    public boolean validarCnpjPessoa(String cnpj){
+        // Vallidando CNPJ...
+        boolean result = false;
+        Cnpj validation = new Cnpj();
+        if (validation.isCNPJ(cnpj)) {
+            return true;
+        } 
+
+        if (repositorio.validarCnpj(cnpj) == null) {
+            setERRO("CNPJ JÁ CADASTRADO...");
+            result = false;
+        } 
+        
+        return result;
+    }
 }

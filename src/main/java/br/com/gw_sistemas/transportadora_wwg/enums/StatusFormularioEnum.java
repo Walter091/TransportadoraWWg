@@ -7,8 +7,9 @@ public enum StatusFormularioEnum implements itfcEnumBase {
     SALVAR("SALVAR", "SL", 0),
     ALTERAR("ALTERAR", "AL", 1),
     EXCLUIR("EXCLUIR", "EX", 2),
-    VIZUALIZAR("VIZUALIZAR", "VZ", 3);
-
+    VIZUALIZAR("VIZUALIZAR", "VZ", 3),
+    EM_ERRO("EM ERRO", "ERR", 4);
+    
     private String descricao;
     private String sigla;
     private int id;

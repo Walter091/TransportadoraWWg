@@ -1,6 +1,8 @@
 package br.com.gw_sistemas.transportadora_wwg.controller;
 
+import br.com.gw_sistemas.transportadora_wwg.enums.StatusFormularioEnum;
 import br.com.gw_sistemas.transportadora_wwg.model.UsuarioLog;
+import br.com.gw_sistemas.transportadora_wwg.nucleo.base.ServicoBase;
 import br.com.gw_sistemas.transportadora_wwg.service.ServiceUsuarioLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +20,8 @@ public class IndexController {
     @Autowired
     private ServiceUsuarioLog serviceUsuarioLog;
 
+    private StatusFormularioEnum statusFormulario;
+            
     @GetMapping("/transportadora-wwg")
     public ModelAndView index() {
 
@@ -28,7 +32,11 @@ public class IndexController {
     public ModelAndView home() {
         ModelAndView pgLogin = new ModelAndView("Login");
         pgLogin.addObject("usuarioLog", new UsuarioLog());
-
+        if (statusFormulario == StatusFormularioEnum.EM_ERRO){
+            pgLogin.addObject("msgError", serviceUsuarioLog.getERRO());
+            
+        }
+    
         return pgLogin;
     }
 
@@ -41,7 +49,8 @@ public class IndexController {
     public RedirectView entrarNoHome(@ModelAttribute("usuarioLog") UsuarioLog usuarioLog, Model model) {
         if (serviceUsuarioLog.entrar(usuarioLog)) {
             return new RedirectView("/transportadora-wwg");
-        } else {
+        } else {            
+            statusFormulario = StatusFormularioEnum.EM_ERRO;
             return new RedirectView("/transportadora-wwg/login");
         }
     }
