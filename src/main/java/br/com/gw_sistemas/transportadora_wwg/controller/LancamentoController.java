@@ -56,7 +56,7 @@ public class LancamentoController {
         if(serviceLancamento.salvar(lancamento)) {
             return new RedirectView("/transportadora-wwg/opcoes/lancamentos");
         }else {
-            return new RedirectView("");
+            return new RedirectView("/transportadora-wwg/opcoes/lancamentos");
         }
     }
 

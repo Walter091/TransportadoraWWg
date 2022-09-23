@@ -23,7 +23,6 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
             }
         } catch (Exception e) {
             System.out.println(e.getMessage());
-
             return false;
         }
     }
