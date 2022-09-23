@@ -1,21 +1,20 @@
 package br.com.gw_sistemas.transportadora_wwg.controller;
 
+import br.com.gw_sistemas.transportadora_wwg.enums.StatusFormularioEnum;
 import br.com.gw_sistemas.transportadora_wwg.model.Lancamento;
 import br.com.gw_sistemas.transportadora_wwg.service.ServiceLancamento;
 import java.io.IOException;
 import java.util.List;
+import java.util.Optional;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.view.RedirectView;
 
 @RestController()
@@ -23,11 +22,13 @@ public class LancamentoController {
 
     @Autowired
     private ServiceLancamento serviceLancamento;
-
+    
+    private StatusFormularioEnum statusFormulario;
+    
     @GetMapping("/transportadora-wwg/opcoes/lancamentos")
     public ModelAndView buscar() {
         ModelAndView pgRalatorios = new ModelAndView("Relatorios");
-        List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.buscarTodos();
+        List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.getListLancamentos();
         
         pgRalatorios.addObject("listLancamentos", todosLancamentos);
         return pgRalatorios;
@@ -48,33 +49,48 @@ public class LancamentoController {
         pgLacamento.addObject("lancamento", new Lancamento());
         pgLacamento.addObject("listPessoas", serviceLancamento.getListPessoas());
         pgLacamento.addObject("listProdutos", serviceLancamento.getListProdutos());        
+        if (statusFormulario == StatusFormularioEnum.EM_ERRO) {
+            pgLacamento.addObject("msgError", serviceLancamento.getERRO());        
+        }
         return pgLacamento;
     }
 
     @PostMapping("/transportadora-wwg/opcoes/lancamentos/cadastrar/salvar")
     public RedirectView salvar(@ModelAttribute("lancamento") Lancamento lancamento) {
-        if(serviceLancamento.salvar(lancamento)) {
+        if (statusFormulario == StatusFormularioEnum.ALTERAR) {
+            serviceLancamento.alterar(lancamento);
             return new RedirectView("/transportadora-wwg/opcoes/lancamentos");
-        }else {
-            return new RedirectView("");
+        } else {
+            if (serviceLancamento.salvar(lancamento)) {
+                return new RedirectView("/transportadora-wwg/opcoes/lancamentos");
+            } else {
+                statusFormulario = StatusFormularioEnum.EM_ERRO;
+                return new RedirectView("/transportadora-wwg/opcoes/lancamentos/cadastrar");
+            }
         }
     }
-
-    @PutMapping("/transportadora-wwg/opcoes/lancamentos/editar/{id}")
+    
+    @GetMapping("/transportadora-wwg/opcoes/lancamentos/editar/{id}")
     public ModelAndView alterar(@PathVariable("id") Long id) {
-        Lancamento obj = serviceLancamento.buscarTodosByID(id);
-        serviceLancamento.alterar(obj);
-        ModelAndView pgFormLancamentos = new ModelAndView("FormLancamentos");
+        statusFormulario = StatusFormularioEnum.ALTERAR;
+        Optional<Lancamento> obj = serviceLancamento.buscarPorId(id);
+
+        ModelAndView pgFormLancamentos = new ModelAndView("FormAlterarLancamentos");
+        pgFormLancamentos.addObject("lancamento", obj.get());
+        pgFormLancamentos.addObject("listRemetente", obj.get().getRemetente());
+        pgFormLancamentos.addObject("listDestinatario", obj.get().getDestinatario());
+        pgFormLancamentos.addObject("listProdutos", obj.get().getProduto());        
+
         return pgFormLancamentos;
     }
 
-    @DeleteMapping("/transportadora-wwg/opcoes/lancamentos/delete/{id}")
+    @GetMapping("/transportadora-wwg/opcoes/lancamentos/delete/{id}")
     public RedirectView delete(@PathVariable("id") Long id) {
-        Lancamento obj = serviceLancamento.buscarTodosByID(id);
-        serviceLancamento.deletar(obj, obj.getId());
+        Optional<Lancamento> obj = serviceLancamento.buscarPorId(id);
+        serviceLancamento.deletar(obj.get(), obj.get().getId());
         return new RedirectView("/transportadora-wwg/opcoes/lancamentos");
     }
-    
+        
     @GetMapping("/transportadora-wwg/lancamento/exportarPdf")
     public void exportarPdf(HttpServletResponse response) throws IOException {        
         List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.buscarTodos();

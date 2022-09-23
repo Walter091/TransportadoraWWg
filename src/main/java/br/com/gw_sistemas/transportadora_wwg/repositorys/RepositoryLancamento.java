@@ -12,4 +12,7 @@ public interface RepositoryLancamento extends RepositorioBase<Lancamento>{
     @Query(value = "UPDATE lancamento SET IND_REG= 1 WHERE id= :id", nativeQuery = true) 
     public void deleteUpdate(@Param("id") Long id);
 
+    @Query(value = "SELECT * FROM lancamento WHERE IND_REG=0", nativeQuery = true) 
+    public Iterable<Lancamento> buscarLista();
+
 }

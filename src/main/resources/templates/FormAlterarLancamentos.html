@@ -59,22 +59,26 @@
                 <h4 class="mb-4" style="margin-top: 5rem;">Lançamento</h4>
                 <form id="form-lanc-natural" action="#" th:action="@{/transportadora-wwg/opcoes/lancamentos/cadastrar/salvar}" method="POST"
                       th:object="${lancamento}">
+                    
+                    <div class="form-row">
+                        <label for="inputID">Id</label>
+                        <input type="number" readonly class="form-control" th:field="*{id}">
+                    </div>
                     <div class="form-row card--date">
                         <div class="form-group ipt--date">
                             <label for="inputDtS">Data Saída</label>
-                            <input type="date" class="form-control" placeholder="Data de Saída" th:field="*{dataSaida}">
+                            <input type="date" class="form-control" readonly placeholder="Data de Saída" th:field="*{dataSaida}">
                         </div>
                         <div class="form-group ipt--date">
                             <label for="inputDtE">Data Entrega</label>
-                            <input type="date" class="form-control" placeholder="Data de Entrega" th:field="*{dataEntrega}">
+                            <input type="date" class="form-control" readonly placeholder="Data de Entrega" th:field="*{dataEntrega}">
                         </div>
                     </div>
-
 
                     <div class="form-group">
                         <label for="inputProduto">Produto</label>
                         <select id="inputProduto" th:field="*{produto}" class="form-control">
-                            <option th:each="p : ${listProdutos}" th:value="${p.id}" selected>
+                            <option th:each="p : ${listProdutos}" th:value="${p.id}" readonly  selected>
                                 [[${p.id}]] - [[${p.nome}]]
                             </option>
                         </select>
@@ -84,10 +88,10 @@
                     <div class="form-group">
                         <label for="inputDestinatario">Destinatario</label>
                         <select id="inputDestinatario" th:field="*{destinatario}" class="form-control">
-                            <option th:each="p : ${listPessoas}"  th:if="${p.cpf}" th:value="${p.id}" selected>
+                            <option th:each="p : ${listDestinatario}"  th:if="${p.cpf}" readonly th:value="${p.id}" selected>
                                 [[${p.nome}]] - [[${p.cpf}]]
                             </option>
-                            <option th:each="p : ${listPessoas}" th:unless="${p.cpf}" th:value="${p.id}" selected>
+                            <option th:each="p : ${listDestinatario}" th:unless="${p.cpf}" readonly th:value="${p.id}" selected>
                                 [[${p.razaoSocial}]] - [[${p.cnpj}]]
                             </option>
                         </select>
@@ -96,10 +100,10 @@
                     <div class="form-group">
                         <label for="inputRemetente">Remetente</label>
                         <select id="inputRemetente" th:field="*{remetente}" class="form-control">
-                            <option th:each="p : ${listPessoas}" th:if="${p.cpf}" th:value="${p.id}" selected>
+                            <option th:each="p : ${listRemetente}" th:if="${p.cpf}" readonly th:value="${p.id}" selected>
                                 [[${p.nome}]] - [[${p.cpf}]]
                             </option>
-                            <option th:each="p : ${listPessoas}" th:unless="${p.cpf}" th:value="${p.id}" selected>
+                            <option th:each="p : ${listRemetente}" th:unless="${p.cpf}" readonly th:value="${p.id}" selected>
                                 [[${p.razaoSocial}]] - [[${p.cnpj}]]
                             </option>
                         </select>
