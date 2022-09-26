@@ -20,7 +20,7 @@ public class PessoaController {
     @Autowired
     private ServicePessoa servicoPessoa;
 
-    private StatusFormularioEnum statusFormulario;
+    private StatusFormularioEnum statusFormulario = StatusFormularioEnum.VIZUALIZAR;
 
     @GetMapping("/transportadora-wwg/opcoes/clientes")
     public ModelAndView buscar() {
