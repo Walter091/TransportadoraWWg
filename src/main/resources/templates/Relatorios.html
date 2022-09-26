@@ -123,26 +123,32 @@
                     <thead>
                         <tr>
                             <th style="color: #fff;">Código</th>
+                            <th style="color: #fff;">Status</th>
                             <th style="color: #fff;">Saida</th>
                             <th style="color: #fff;">Entrega</th>
                             <th style="color: #fff;">Remetente</th>
                             <th style="color: #fff;">Destinatario</th>
                             <th style="color: #fff;">Produto</th>
-                            <th style="color: #fff;">Status</th>
-                            <th></th>
-                            <th></th>
+                            <th style="color: #fff">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="lancamento : ${listLancamentos}">
-                           <td th:text="${lancamento.id}"></td>
-                           <td th:text="${lancamento.dataSaida}"></td>
-                           <td th:text="${lancamento.dataEntrega}"></td>
-                           <td th:text="${lancamento.status}"></td>
+                            <td th:text="${lancamento.id}"></td>
+                            <td th:text="${lancamento.status}"></td>
+                            <td th:text="${lancamento.dataSaida}"></td>
+                            <td th:text="${lancamento.dataEntrega}"></td>
+                            <td th:text="${lancamento.produto.nome}"></td>
                             <td>
-                                <a th:href="@{/transportadora-wwg/opcoes/lancamentos/editar/{id}(id=${lancamento.id})}" th:method="GET" class="btn btn-primary">Alterar</a>
+                                <span th:if="${lancamento.remetente.cpf}">[[${lancamento.remetente.cpf}]] - [[${lancamento.remetente.nome}]]</span>
+                                <span th:unless="${lancamento.remetente.cpf}">[[${lancamento.remetente.cnpj}]] - [[${lancamento.remetente.nome}]]</span>
                             </td>
                             <td>
+                                <span th:if="${lancamento.destinatario.cpf}">[[${lancamento.destinatario.cpf}]] - [[${lancamento.destinatario.nome}]]</span>
+                                <span th:unless="${lancamento.destinatario.cpf}">[[${lancamento.destinatario.cnpj}]] - [[${lancamento.destinatario.nome}]]</span>
+                            </td>
+                            <td>
+                                <a th:href="@{/transportadora-wwg/opcoes/lancamentos/editar/{id}(id=${lancamento.id})}" th:method="GET" class="btn btn-primary">Alterar</a>
                                 <a th:href="@{/transportadora-wwg/opcoes/lancamentos/delete/{id}(id=${lancamento.id})}" th:method="GET" class="btn btn-danger">Excluir</a>
                             </td>
                         </tr>
