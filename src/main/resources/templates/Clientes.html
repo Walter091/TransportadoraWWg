@@ -57,30 +57,30 @@
                 width: 200px;
                 padding: 3px 0;
             }
-        
+
             main {
-                width: 1200px;
+                width: 1188px;
                 height: 700px;
                 margin: 0 auto;
             }
-        
+
             main .pesquisa {
                 display: flex;
                 justify-content: space-between;
                 padding: 20px 0;
             }
-        
+
             main .card--conteudo {
                 padding-top: 50px;
             }
-        
+
             main .card--conteudo table th {
                 background-color: #49BFFF;
                 color: #000;
                 text-align: center;
             }
-        
-        
+
+
             nav {
                 width: 100%;
                 display: flex;
@@ -92,7 +92,7 @@
     </head>
 
     <body>
-       <header>
+        <header>
             <nav>
                 <h1>
                     Transportadora WWG - Clientes
@@ -136,10 +136,17 @@
                     </thead>
                     <tbody>
                         <tr th:each="client : ${listClients}">
-                            <td class="text-center" th:text="${client.nome}"></td>
-                            <td class="text-center" th:text="${client.cpf}"></td>
-                            <td class="text-center" th:text="${client.cnpj}"></td>
-                            <td class="text-center" th:text="${client.razaoSocial}"></td>
+                            
+                            <td class="text-center" th:if="${client.cpf}" th:text="${client.nome}"></td>
+                            <td class="text-center" th:if="${client.cpf}" th:text="${client.cpf}"></td>
+                            <td class="text-center" th:if="${client.cpf}" th:text="----------"></td>
+                            <td class="text-center" th:if="${client.cpf}" th:text="----------"></td>
+                            
+                            <td class="text-center" th:if="${client.cnpj}" th:text="----------"></td>
+                            <td class="text-center" th:if="${client.cnpj}" th:text="----------"></td>
+                            <td class="text-center" th:if="${client.cnpj}" th:text="${client.cnpj}"></td>
+                            <td class="text-center" th:if="${client.cnpj}" th:text="${client.razaoSocial}"></td>
+                            
                             <td class="text-center" th:text="${client.cidade}"></td>
                             <td class="text-center" th:text="${client.bairro}"></td>
                             <td class="text-center" th:text="${client.rua}"></td>

@@ -110,10 +110,9 @@
                     </div>   
 
                     <div class="form-group">
-                        <label for="inputStatus">Status Inicial</label>
+                        <label for="inputStatus">Status</label>
                         <select id="inputStatus" th:field="*{status}" class="form-control">
-                            <option th:each="status : ${T( br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum).values()}" th:value="${status.descricao}" th:text="${status.descricao}"
-                                    selected> </option>
+                            <option th:each="status : ${T( br.com.gw_sistemas.transportadora_wwg.enums.StatusEnum).values()}" th:value="${status.descricao}" th:text="${status.descricao}" selected> </option>
                         </select>
                     </div>                
 

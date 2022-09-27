@@ -63,6 +63,8 @@
                 width: 1200px;
                 height: 700px;
                 margin: 0 auto;
+
+
             }
 
             main .pesquisa {
@@ -87,6 +89,11 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+            }
+            
+            table td {
+                text-align: center;
+                vertical-align: middle;
             }
         </style>
 
@@ -138,16 +145,18 @@
                             <td th:text="${lancamento.status}"></td>
                             <td th:text="${lancamento.dataSaida}"></td>
                             <td th:text="${lancamento.dataEntrega}"></td>
-                            <td th:text="${lancamento.produto.nome}"></td>
+
                             <td>
                                 <span th:if="${lancamento.remetente.cpf}">[[${lancamento.remetente.cpf}]] - [[${lancamento.remetente.nome}]]</span>
-                                <span th:unless="${lancamento.remetente.cpf}">[[${lancamento.remetente.cnpj}]] - [[${lancamento.remetente.nome}]]</span>
+                                <span th:if="${lancamento.remetente.cnpj}">[[${lancamento.remetente.cnpj}]] - [[${lancamento.remetente.razaoSocial}]]</span>
                             </td>
                             <td>
                                 <span th:if="${lancamento.destinatario.cpf}">[[${lancamento.destinatario.cpf}]] - [[${lancamento.destinatario.nome}]]</span>
-                                <span th:unless="${lancamento.destinatario.cpf}">[[${lancamento.destinatario.cnpj}]] - [[${lancamento.destinatario.nome}]]</span>
-                            </td>
-                            <td>
+                                <span th:if="${lancamento.destinatario.cnpj}">[[${lancamento.destinatario.cnpj}]] - [[${lancamento.destinatario.razaoSocial}]]</span>
+                            </td> 
+
+                            <td th:text="${lancamento.produto.nome}"></td>  
+                            <td style="display: flex; align-items: center; justify-content: center; gap: 10px">
                                 <a th:href="@{/transportadora-wwg/opcoes/lancamentos/editar/{id}(id=${lancamento.id})}" th:method="GET" class="btn btn-primary">Alterar</a>
                                 <a th:href="@{/transportadora-wwg/opcoes/lancamentos/delete/{id}(id=${lancamento.id})}" th:method="GET" class="btn btn-danger">Excluir</a>
                             </td>
@@ -156,6 +165,7 @@
                 </table>
             </section>
         </main>
+
         <!-- Navegação de pagina -->
         <nav aria-label="Page navigation">
             <ul class="pagination">

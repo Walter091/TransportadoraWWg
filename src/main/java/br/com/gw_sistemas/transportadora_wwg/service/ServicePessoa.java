@@ -50,7 +50,14 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
     // ------------------------------------------------------------------------
     
     public Iterable<Pessoa> buscarListaPessoa(){
-        return repositorio.buscarLista();
+        Iterable<Pessoa> listaPessoa = repositorio.buscarLista();
+        
+        listaPessoa.forEach(item -> {
+            if (item.getCpf().equals("")) item.setCpf(null);
+            else if (item.getCnpj().equals("")) item.setCnpj(null);
+        });
+        
+        return listaPessoa;
     }
     
     // ------------------------------------------------------------------------
@@ -58,7 +65,7 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
     @Override
     public boolean doAntesDeSalvar(Pessoa obj) {
         boolean result  = false;
-        if (!obj.getCpf().isEmpty() || obj.getCpf().length() >  0) {
+        if (!obj.getCpf().isEmpty() || obj.getCpf().length() >  0) {         
             if (validarCpfPessoa(obj.getCpf())) result = true;
             else {
                 setERRO("CPF Inválido");
@@ -66,6 +73,7 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
                 result = false;
             }
         }
+        
         if (!obj.getCnpj().isEmpty() || obj.getCnpj().length() >  0) {
             if (validarCnpjPessoa(obj.getCnpj())) result = true;
             else {

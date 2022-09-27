@@ -4,8 +4,9 @@ import br.com.gw_sistemas.transportadorawwg.nucleo.base.itfcEnumBase;
 
 public enum StatusEnum implements itfcEnumBase {
 
-    EM_TRANSITO("Em transito", "ET", 0),
+    
     EM_DEPOSITO("Em Depósito", "ED", 1),
+    EM_TRANSITO("Em transito", "ET", 0),
     ENTREGUE("Entregue", "EG", 2),
     CANCELADO("Cancelado", "CD", 3);
 

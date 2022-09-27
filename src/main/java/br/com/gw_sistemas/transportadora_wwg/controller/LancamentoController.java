@@ -48,7 +48,8 @@ public class LancamentoController {
         ModelAndView pgLacamento =new ModelAndView("FormLancamentos");
         pgLacamento.addObject("lancamento", new Lancamento());
         pgLacamento.addObject("listPessoas", serviceLancamento.getListPessoas());
-        pgLacamento.addObject("listProdutos", serviceLancamento.getListProdutos());        
+        pgLacamento.addObject("listProdutos", serviceLancamento.getListProdutos()); 
+        
         if (statusFormulario == StatusFormularioEnum.EM_ERRO) {
             pgLacamento.addObject("msgError", serviceLancamento.getERRO());        
         }
