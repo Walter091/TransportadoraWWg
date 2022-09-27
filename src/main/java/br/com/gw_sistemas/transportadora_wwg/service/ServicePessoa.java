@@ -45,11 +45,16 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
     
     public Iterable<Pessoa> buscarListaPessoa(){
         Iterable<Pessoa> listaPessoa = repositorio.buscarLista();
-        
-        listaPessoa.forEach(item -> {
-            if (item.getCpf().equals("")) item.setCpf(null);
-            else if (item.getCnpj().equals("")) item.setCnpj(null);
-        });
+
+        try {
+            listaPessoa.forEach(item -> {
+                if (item.getCpf().equals("")) item.setCpf(null);
+                else if (item.getCnpj().equals("")) item.setCnpj(null);
+            });
+
+        } catch (Exception ex) {
+            new ExceptionValidacao(ValidationsEnum.NULL_POINTER, ex.getMessage());
+        } 
         
         return listaPessoa;
     }
@@ -59,23 +64,29 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
     @Override
     public boolean doAntesDeSalvar(Pessoa obj) {
         boolean result  = false;
-        if (!obj.getCpf().isEmpty() || obj.getCpf().length() >  0) {         
-            if (validarCpfPessoa(obj.getCpf())) result = true;
-            else {
-                setERRO("CPF Inválido");
-                obj.setCpf(null);
-                result = false;
+        if (obj.getCpf()!= null) {
+            if (!obj.getCpf().isEmpty() || obj.getCpf().length() >  0) {         
+                if (validarCpfPessoa(obj.getCpf())) result = true;
+                else {
+                    setERRO("CPF Inválido");
+                    obj.setCpf(null);
+                    result = false;
+                }
             }
         }
         
-        if (!obj.getCnpj().isEmpty() || obj.getCnpj().length() >  0) {
-            if (validarCnpjPessoa(obj.getCnpj())) result = true;
-            else {
-                setERRO("CNPJ Inválido");
-                obj.setCnpj(null);
-                result = false;
+        if (obj.getCnpj() != null) {
+            if (!obj.getCnpj().isEmpty() || obj.getCnpj().length() >  0) {
+                if (validarCnpjPessoa(obj.getCnpj())) result = true;
+                else {
+                    setERRO("CNPJ Inválido");
+                    obj.setCnpj(null);
+                    result = false;
+                }
             }
+            
         }
+        
         return result;
     }
     

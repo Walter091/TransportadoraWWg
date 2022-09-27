@@ -78,14 +78,18 @@ public class ServiceLancamento extends ServicoBase<Lancamento> {
     public Iterable<Lancamento> getListLancamentos() {
        Iterable<Lancamento> todosLancamentos = repositorio.buscarLista();
         
-        todosLancamentos.forEach(item -> {
-            if (item.getRemetente().getCpf().equals("")) item.getRemetente().setCpf(null);  
-            else if (item.getRemetente().getCnpj().equals("")) item.getRemetente().setCnpj(null); 
-            
-            if (item.getDestinatario().getCpf().equals("")) item.getDestinatario().setCpf(null);  
-            else if (item.getDestinatario().getCnpj().equals("")) item.getDestinatario().setCnpj(null); 
-        });
-        
+       try {
+            todosLancamentos.forEach(item -> {
+                if (item.getRemetente().getCpf().equals("")) item.getRemetente().setCpf(null);  
+                else if (item.getRemetente().getCnpj().equals("")) item.getRemetente().setCnpj(null); 
+
+                if (item.getDestinatario().getCpf().equals("")) item.getDestinatario().setCpf(null);  
+                else if (item.getDestinatario().getCnpj().equals("")) item.getDestinatario().setCnpj(null); 
+            });
+       } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+       
         return todosLancamentos;
     }
 
