@@ -3,13 +3,24 @@
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
-	<parameter name="ID" class="java.lang.String"/>
-	<parameter name="DATA_SAIDA" class="java.util.Date"/>
-	<parameter name="DATA_ENTREGA" class="java.util.Date"/>
-	<parameter name="STATUS" class="java.lang.String"/>
-	<parameter name="REMETENTE" class="java.lang.String"/>
-	<parameter name="DESTINATARIO" class="java.lang.String"/>
-	<parameter name="PRODUTO" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select
+l.data_saida, l.data_entrega,
+r.nome as remetente,
+d.nome as destinatario,
+p.nome as produto,
+l.status
+from lancamento l
+join pessoa r on (r.id = l.remetente)
+join pessoa d on (d.id = l.destinatario)
+join produto p on (p.id = l.produto)]]>
+	</queryString>
+	<field name="data_saida" class="java.lang.String"/>
+	<field name="data_entrega" class="java.lang.String"/>
+	<field name="remetente" class="java.lang.String"/>
+	<field name="destinatario" class="java.lang.String"/>
+	<field name="produto" class="java.lang.String"/>
+	<field name="status" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -116,18 +127,18 @@
 		<band height="61" splitType="Stretch">
 			<textField>
 				<reportElement x="4" y="11" width="62" height="20" uuid="b316e7f9-deb2-47a3-a175-5ce3aa2e451e"/>
-				<textFieldExpression><![CDATA[$P{DATA_SAIDA}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data_saida}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="77" y="11" width="72" height="20" uuid="a041beef-11ca-46bb-bd4e-4e1de0b81131"/>
-				<textFieldExpression><![CDATA[$F{dataEntrega}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{data_entrega}]]></textFieldExpression>
 			</textField>
 			<textField>
 				<reportElement x="470" y="11" width="75" height="20" uuid="ae04c2b6-135b-41e3-9ad3-9efb5f96af6e"/>
-				<textFieldExpression><![CDATA[$P{STATUS}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="157" y="11" width="69" height="20" uuid="65daf24c-831b-472e-b3cb-68f7cdb77395"/>
+				<reportElement x="157" y="11" width="81" height="20" uuid="65daf24c-831b-472e-b3cb-68f7cdb77395"/>
 				<textFieldExpression><![CDATA[$F{remetente}]]></textFieldExpression>
 			</textField>
 			<textField>

@@ -94,7 +94,7 @@ public class LancamentoController {
         
     @GetMapping("/transportadora-wwg/lancamento/exportarPdf")
     public void exportarPdf(HttpServletResponse response) throws IOException {        
-        List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.buscarTodos();
+        List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.getListLancamentos();
         serviceLancamento.gerarRelatorio(todosLancamentos, response.getOutputStream());
     }
     
