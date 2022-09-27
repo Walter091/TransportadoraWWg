@@ -14,7 +14,7 @@ public class ServiceProduto extends ServicoBase<Produto> {
 
     @Autowired
     private RepositoryProduto repositorio;
-
+    
     @Override
     public void implementaDelete(Long id) {
        try {
@@ -35,6 +35,18 @@ public class ServiceProduto extends ServicoBase<Produto> {
        
         super.salvar(objAlterado.get());
             
+    }
+
+    @Override
+    public boolean doAntesDeSalvar(Produto obj) {
+        boolean result = false;
+        if (obj.getPeso() >= 1) result = true; 
+        if (obj.getPreco() >= 1) result = true; 
+        if (obj.getVolume() >= 1) result = true;  
+        else {
+            setERRO("Todos os campos devem ser preenchidos");
+        }
+        return result;
     }
     
     // -------------------------------------------------------------------------

@@ -8,8 +8,6 @@ import br.com.gw_sistemas.transportadorawwg.nucleo.utils.stringUtils.Cpf;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ExceptionValidacao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ValidationsEnum;
 import java.util.Optional;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,10 +16,6 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
 
     @Autowired
     private RepositoryPessoa repositorio;
-    
-    @Getter
-    @Setter
-    public String ERRO = " ";
     
     @Override
     public void implementaDelete(Long id) {
@@ -52,10 +46,10 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
     public Iterable<Pessoa> buscarListaPessoa(){
         Iterable<Pessoa> listaPessoa = repositorio.buscarLista();
         
-        listaPessoa.forEach(item -> {
-            if (item.getCpf().equals("")) item.setCpf(null);
-            else if (item.getCnpj().equals("")) item.setCnpj(null);
-        });
+//        listaPessoa.forEach(item -> {
+//            if (item.getCpf().equals("")) item.setCpf(null);
+//            else if (item.getCnpj().equals("")) item.setCnpj(null);
+//        });
         
         return listaPessoa;
     }

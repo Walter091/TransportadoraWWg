@@ -40,19 +40,30 @@ class ProdutoController {
 
     @GetMapping("/transportadora-wwg/opcoes/produtos/cadastrar")
     public ModelAndView formCadastro() {
-        statusFormulario = StatusFormularioEnum.SALVAR;
         ModelAndView pgFormProduto = new ModelAndView("FormProdutos");
         pgFormProduto.addObject("produto", new Produto());
-        
+        if (statusFormulario == StatusFormularioEnum.EM_ERRO) {
+            pgFormProduto.addObject("msgError", serviceProduto.getERRO());
+        }
         return pgFormProduto;
     }
 
     @PostMapping("/transportadora-wwg/opcoes/produtos/cadastrar/salvar")
     public RedirectView salvar(@ModelAttribute("produto") Produto produto) {
-        if (statusFormulario == StatusFormularioEnum.SALVAR)  serviceProduto.salvar(produto);
-        else if (statusFormulario == StatusFormularioEnum.ALTERAR) serviceProduto.alterar(produto);
- 
-        return new RedirectView("/transportadora-wwg/opcoes/produtos");
+        if (statusFormulario == StatusFormularioEnum.ALTERAR)  {
+            serviceProduto.alterar(produto);
+            return new RedirectView("/transportadora-wwg/opcoes/produtos");
+        }
+        else {
+            if (serviceProduto.salvar(produto)) {
+                return new RedirectView("/transportadora-wwg/opcoes/produtos");
+            } else {
+                statusFormulario = StatusFormularioEnum.EM_ERRO;
+                return new RedirectView("/transportadora-wwg/opcoes/produtos/cadastrar");
+            }
+            
+        }
+        
     }
 
     @GetMapping("/transportadora-wwg/opcoes/produtos/editar/{id}")

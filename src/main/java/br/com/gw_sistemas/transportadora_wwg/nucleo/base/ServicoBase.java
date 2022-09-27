@@ -4,13 +4,19 @@ import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.Exceptio
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ValidationsEnum;
 import java.util.List;
 import java.util.Optional;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
 
     @Autowired
     private RepositorioBase<T> repositorio;
-
+    
+    @Getter
+    @Setter
+    public String ERRO = " ";
+    
     public boolean salvar(T obj) {
         try {
             if (doAntesDeSalvar(obj)) {

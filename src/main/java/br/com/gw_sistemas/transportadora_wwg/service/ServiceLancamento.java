@@ -8,11 +8,8 @@ import br.com.gw_sistemas.transportadora_wwg.model.Produto;
 import br.com.gw_sistemas.transportadora_wwg.nucleo.base.ServicoBase;
 import br.com.gw_sistemas.transportadora_wwg.repositorys.RepositoryLancamento;
 import java.io.OutputStream;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-import lombok.Getter;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -29,10 +26,6 @@ public class ServiceLancamento extends ServicoBase<Lancamento> {
     private ServiceProduto servicoProduto;
 
     private StatusFormularioEnum statusFormulario;
-
-    @Getter
-    @Setter
-    public String ERRO = " ";
 
     @Override
     public void implementaDelete(Long id) {
@@ -71,10 +64,6 @@ public class ServiceLancamento extends ServicoBase<Lancamento> {
                 return false;
             }
 
-            //        if (obj.getDataSaida().compareTo(obj.getDataEntrega()) == 0) {
-            //            setERRO("Data de Entrega não pode ser menor que a Data de Saída");
-            //            return false;
-            //        }
             if (obj.getRemetente().equals(obj.getDestinatario())) {
                 setERRO("Destinatário deve ser Diferente que o Remetente");
                 return false;
