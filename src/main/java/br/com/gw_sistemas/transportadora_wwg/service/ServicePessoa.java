@@ -46,10 +46,10 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
     public Iterable<Pessoa> buscarListaPessoa(){
         Iterable<Pessoa> listaPessoa = repositorio.buscarLista();
         
-//        listaPessoa.forEach(item -> {
-//            if (item.getCpf().equals("")) item.setCpf(null);
-//            else if (item.getCnpj().equals("")) item.setCnpj(null);
-//        });
+        listaPessoa.forEach(item -> {
+            if (item.getCpf().equals("")) item.setCpf(null);
+            else if (item.getCnpj().equals("")) item.setCnpj(null);
+        });
         
         return listaPessoa;
     }

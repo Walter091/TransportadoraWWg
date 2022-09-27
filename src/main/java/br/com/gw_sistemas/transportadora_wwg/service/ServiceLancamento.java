@@ -92,10 +92,15 @@ public class ServiceLancamento extends ServicoBase<Lancamento> {
     public Iterable<Pessoa> getListPessoas() {
         Iterable<Pessoa> listaPessoa = servicoPessoa.buscarListaPessoa();
         
-       for (Pessoa item : listaPessoa) {
-            if (item.getCpf().equals("")) item.setCpf(null);
-            else if (item.getCnpj().equals("")) item.setCnpj(null);
-        };
+        try {
+            for (Pessoa item : listaPessoa) {
+                if (item.getCpf().equals("")) item.setCpf(null);
+                else if (item.getCnpj().equals("")) item.setCnpj(null);
+            }; 
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
          
         return listaPessoa;
     }

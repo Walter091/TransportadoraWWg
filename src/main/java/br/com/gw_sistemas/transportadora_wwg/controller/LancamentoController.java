@@ -28,18 +28,16 @@ public class LancamentoController {
     @GetMapping("/transportadora-wwg/opcoes/lancamentos")
     public ModelAndView buscar() {
         ModelAndView pgRalatorios = new ModelAndView("Relatorios");
-        List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.getListLancamentos();
         
-        pgRalatorios.addObject("listLancamentos", todosLancamentos);
+        pgRalatorios.addObject("listLancamentos", serviceLancamento.getListLancamentos());
         return pgRalatorios;
     }
 
     @GetMapping("/transportadora-wwg/opcoes/lancamentos/{id}")
     public ModelAndView buscarTodosByID(@PathVariable("id") Long id) {
         ModelAndView pgRalatorios = new ModelAndView("Relatorios");
-        List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.buscarTodosByID(id);
         
-        pgRalatorios.addObject("todosLancamentosFiltrados", todosLancamentos);
+        pgRalatorios.addObject("todosLancamentosFiltrados", serviceLancamento.buscarTodosByID(id));
         return pgRalatorios;
     }
     
