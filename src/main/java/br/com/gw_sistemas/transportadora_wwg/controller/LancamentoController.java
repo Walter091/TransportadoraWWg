@@ -3,11 +3,31 @@ package br.com.gw_sistemas.transportadora_wwg.controller;
 import br.com.gw_sistemas.transportadora_wwg.enums.StatusFormularioEnum;
 import br.com.gw_sistemas.transportadora_wwg.model.Lancamento;
 import br.com.gw_sistemas.transportadora_wwg.service.ServiceLancamento;
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.pdf.PdfDocument;
+import com.itextpdf.text.pdf.PdfObject;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import static org.bouncycastle.asn1.cms.CMSObjectIdentifiers.data;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +35,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
+import static org.springframework.web.servlet.function.RequestPredicates.headers;
 import org.springframework.web.servlet.view.RedirectView;
 
 @RestController()
@@ -89,12 +110,20 @@ public class LancamentoController {
         serviceLancamento.deletar(obj.get(), obj.get().getId());
         return new RedirectView("/transportadora-wwg/opcoes/lancamentos");
     }
-        
-    @GetMapping("/transportadora-wwg/lancamento/exportarPdf")
-    public void exportarPdf(HttpServletResponse response) throws IOException {        
-        List<Lancamento> todosLancamentos = (List<Lancamento>) serviceLancamento.getListLancamentos();
-        serviceLancamento.gerarRelatorio(todosLancamentos, response.getOutputStream());
-    }
     
+    // ---------------------------------------------------------------------------------------------------------
+    
+    @GetMapping("/transportadora-wwg/opcoes/lancamentos/relatorios")
+    public ResponseEntity<byte[]> exportarPdf() throws JRException, IOException  {        
+        byte data[] = serviceLancamento.exportReport();
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+       
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(data);
+
+    }
+   
+
 }
     

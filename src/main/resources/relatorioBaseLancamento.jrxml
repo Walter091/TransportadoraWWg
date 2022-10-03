@@ -15,11 +15,11 @@ join pessoa r on (r.id = l.remetente)
 join pessoa d on (d.id = l.destinatario)
 join produto p on (p.id = l.produto)]]>
 	</queryString>
-	<field name="data_saida" class="java.lang.String"/>
-	<field name="data_entrega" class="java.lang.String"/>
-	<field name="remetente" class="java.lang.String"/>
-	<field name="destinatario" class="java.lang.String"/>
-	<field name="produto" class="java.lang.String"/>
+	<field name="dataSaida" class="java.lang.String"/>
+	<field name="dataEntrega" class="java.lang.String"/>
+	<field name="remetente.nome" class="java.lang.String"/>
+	<field name="destinatario.nome" class="java.lang.String"/>
+	<field name="produto.nome" class="java.lang.String"/>
 	<field name="status" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
@@ -64,21 +64,7 @@ join produto p on (p.id = l.produto)]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="103" splitType="Stretch">
-			<staticText>
-				<reportElement x="4" y="80" width="62" height="20" uuid="a312dba7-df61-49a1-88d6-c94af0edd564"/>
-				<textElement>
-					<font fontName="Courier New" size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Saída]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="74" y="79" width="75" height="20" uuid="8b0c473e-054d-4552-a62b-cfda43d41025"/>
-				<textElement>
-					<font fontName="Courier New" size="14" isBold="true"/>
-				</textElement>
-				<text><![CDATA[Entrega]]></text>
-			</staticText>
+		<band height="102" splitType="Stretch">
 			<staticText>
 				<reportElement x="152" y="79" width="74" height="20" uuid="96538c17-1d2a-441f-9d40-623f068706ad"/>
 				<textElement>
@@ -115,44 +101,58 @@ join produto p on (p.id = l.produto)]]>
 				<text><![CDATA[Relatório de Lançamentos Da transportadora WWG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="4" y="51" width="126" height="17" forecolor="#010101" backcolor="#DCDCDC" uuid="23fe35b9-8eab-4355-b18d-c598589b93f5"/>
+				<reportElement mode="Opaque" x="4" y="52" width="126" height="17" forecolor="#010101" backcolor="#DCDCDC" uuid="23fe35b9-8eab-4355-b18d-c598589b93f5"/>
 				<textElement textAlignment="Left">
 					<font fontName="Courier New" size="14" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Lançamentos:]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="4" y="80" width="62" height="20" uuid="a312dba7-df61-49a1-88d6-c94af0edd564"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saída]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="66" y="80" width="75" height="20" uuid="8b0c473e-054d-4552-a62b-cfda43d41025"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrega]]></text>
+			</staticText>
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="61" splitType="Stretch">
-			<textField>
-				<reportElement x="4" y="11" width="62" height="20" uuid="b316e7f9-deb2-47a3-a175-5ce3aa2e451e"/>
-				<textFieldExpression><![CDATA[$F{data_saida}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="77" y="11" width="72" height="20" uuid="a041beef-11ca-46bb-bd4e-4e1de0b81131"/>
-				<textFieldExpression><![CDATA[$F{data_entrega}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="470" y="11" width="75" height="20" uuid="ae04c2b6-135b-41e3-9ad3-9efb5f96af6e"/>
-				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="157" y="11" width="81" height="20" uuid="65daf24c-831b-472e-b3cb-68f7cdb77395"/>
-				<textFieldExpression><![CDATA[$F{remetente}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="257" y="11" width="75" height="20" uuid="a59eb148-f24c-49aa-b357-a7acbd24b272"/>
-				<textFieldExpression><![CDATA[$F{destinatario}]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement x="364" y="11" width="75" height="20" uuid="09673591-5f36-4cb6-83fb-22291385be6e"/>
-				<textFieldExpression><![CDATA[$F{produto}]]></textFieldExpression>
-			</textField>
-		</band>
+		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="125" splitType="Stretch"/>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="4" y="0" width="62" height="20" uuid="b316e7f9-deb2-47a3-a175-5ce3aa2e451e"/>
+				<textFieldExpression><![CDATA[$F{dataSaida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="77" y="0" width="72" height="20" uuid="a041beef-11ca-46bb-bd4e-4e1de0b81131"/>
+				<textFieldExpression><![CDATA[$F{dataEntrega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="152" y="0" width="81" height="20" uuid="65daf24c-831b-472e-b3cb-68f7cdb77395"/>
+				<textFieldExpression><![CDATA[$F{remetente.nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="257" y="0" width="75" height="20" uuid="a59eb148-f24c-49aa-b357-a7acbd24b272"/>
+				<textFieldExpression><![CDATA[$F{destinatario.nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="364" y="0" width="75" height="20" uuid="09673591-5f36-4cb6-83fb-22291385be6e"/>
+				<textFieldExpression><![CDATA[$F{produto.nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="470" y="0" width="75" height="20" uuid="ae04c2b6-135b-41e3-9ad3-9efb5f96af6e"/>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+		</band>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>
