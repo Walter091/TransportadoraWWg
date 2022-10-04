@@ -3,8 +3,13 @@ package br.com.gw_sistemas.transportadora_wwg.controller;
 import br.com.gw_sistemas.transportadora_wwg.enums.StatusFormularioEnum;
 import br.com.gw_sistemas.transportadora_wwg.model.Pessoa;
 import br.com.gw_sistemas.transportadora_wwg.service.ServicePessoa;
+import java.io.IOException;
 import java.util.Optional;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -88,4 +93,18 @@ public class PessoaController {
         return new RedirectView("/transportadora-wwg/opcoes/clientes");
     }
     
+    // ---------------------------------------------------------------------------------------------------------
+    
+    @GetMapping("/transportadora-wwg/opcoes/Clientes/relatorioClientes")
+    public ResponseEntity<byte[]> exportarPdf() throws JRException, IOException {        
+        byte data[] = servicoPessoa.exportReport();
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "inline; filename=citiesreport.pdf");
+       
+        return ResponseEntity.ok().headers(headers).contentType(MediaType.APPLICATION_PDF).body(data);
+
+    }
+   
+   
 }

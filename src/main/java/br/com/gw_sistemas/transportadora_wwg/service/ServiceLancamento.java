@@ -4,22 +4,15 @@ import br.com.gw_sistemas.transportadora_wwg.enums.StatusFormularioEnum;
 import br.com.gw_sistemas.transportadora_wwg.model.Lancamento;
 import br.com.gw_sistemas.transportadora_wwg.model.Pessoa;
 import br.com.gw_sistemas.transportadora_wwg.model.Produto;
+import br.com.gw_sistemas.transportadora_wwg.nucleo.base.RelatorioBase;
 import br.com.gw_sistemas.transportadora_wwg.nucleo.base.ServicoBase;
 import br.com.gw_sistemas.transportadora_wwg.repositorys.RepositoryLancamento;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.Optional;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.util.ResourceUtils;
 
 @Service
 public class ServiceLancamento extends ServicoBase<Lancamento> {
@@ -120,21 +113,7 @@ public class ServiceLancamento extends ServicoBase<Lancamento> {
     // -----------------------------------------------------------------------------------
     
     public byte[] exportReport() throws FileNotFoundException, JRException {
-        List<Lancamento> lista = (List<Lancamento>) getListLancamentos();
-        File file = ResourceUtils.getFile("classpath:relatorioBaseLancamento.jrxml");
-
-        JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
-
-        JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(lista);
-        JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, null, dataSource);
-
-        JasperExportManager.exportReportToPdfFile(jasperPrint, "Lancamentos.pdf");
-        
-        byte data[] = JasperExportManager.exportReportToPdf(jasperPrint);
-
-        System.err.println(data);
-        
-        return data;
+        return RelatorioBase.exportReport((List) getListLancamentos(), "relatorioBaseLancamento", "Lancamentos");
     }
 
 }

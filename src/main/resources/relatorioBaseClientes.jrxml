@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="relatorioBase" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="07071a22-fb46-4710-bc26-13781d5789b9">
+	<property name="ireport.zoom" value="1.6105100000000008"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[select * from pessoa]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="cnpj" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="indReg" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="razaoSocial" class="java.lang.String"/>
+	<field name="rua" class="java.lang.String"/>
+	<field name="uf" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="120" splitType="Stretch">
+			<image>
+				<reportElement x="404" y="8" width="135" height="60" uuid="64fe9184-5369-4628-befe-28676ed8c4db"/>
+				<imageExpression><![CDATA["/home/walter/Downloads/logoWWG.jpeg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="0" width="404" height="39" uuid="bd481138-1355-4302-b49f-4816fac99122"/>
+				<textElement>
+					<font fontName="Courier New" size="30" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Transportadora WWG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="39" width="177" height="20" uuid="765ef0f8-4c90-4961-abee-800fe9995b9c"/>
+				<textElement>
+					<font fontName="Courier New" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Transportadora Terceirizada]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="59" width="177" height="20" uuid="fd91e939-9651-4089-abd2-9f393f99e1f8"/>
+				<textElement>
+					<font fontName="Courier New" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Contato: (81) 9 8568-9658]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="79" width="376" height="20" uuid="af0c8018-cddc-4833-bd25-cdae005ddde1"/>
+				<textElement>
+					<font fontName="Courier New" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Transportando seus sonhos por todo o Brasil]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="111" width="555" height="1" uuid="45301ffe-3266-435c-ba9f-6518aab373b3"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="110" splitType="Stretch">
+			<staticText>
+				<reportElement x="117" y="80" width="108" height="20" uuid="96538c17-1d2a-441f-9d40-623f068706ad"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Razão Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="229" y="80" width="35" height="20" uuid="b64268bc-083d-447f-9e97-d9f4fdefc5a5"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CPF]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="321" y="80" width="39" height="20" uuid="986f5f4f-0be1-4b67-9bac-2357099ce3c3"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[CNPJ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="435" y="80" width="75" height="20" uuid="ec2f9525-5053-468c-af22-efea9b25bc00"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="0" width="551" height="24" forecolor="#FEFEFE" backcolor="#585151" uuid="72a9c062-94e1-4f13-80e0-98bc02834cb1"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório de Clientes Da transportadora WWG]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="4" y="52" width="126" height="17" forecolor="#010101" backcolor="#DCDCDC" uuid="23fe35b9-8eab-4355-b18d-c598589b93f5"/>
+				<textElement textAlignment="Left">
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Clientes:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="80" width="27" height="20" uuid="a312dba7-df61-49a1-88d6-c94af0edd564"/>
+				<textElement textAlignment="Right">
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<line>
+				<reportElement x="5" y="100" width="545" height="1" uuid="3ce1e465-be39-41a5-90a2-eed2c58ad066"/>
+			</line>
+			<staticText>
+				<reportElement x="37" y="80" width="75" height="20" uuid="8b0c473e-054d-4552-a62b-cfda43d41025"/>
+				<textElement>
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="515" y="80" width="35" height="20" uuid="4c3ac81a-84c8-49c9-b0c1-f60ef33ff2a5"/>
+				<textElement textAlignment="Center">
+					<font fontName="DejaVu Sans Mono" size="14" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[UF]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="33" splitType="Stretch">
+			<textField>
+				<reportElement x="5" y="0" width="27" height="20" uuid="b316e7f9-deb2-47a3-a175-5ce3aa2e451e"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="37" y="0" width="72" height="20" uuid="a041beef-11ca-46bb-bd4e-4e1de0b81131"/>
+				<textFieldExpression><![CDATA[$F{nome}.length() > 1 && $F{nome} != null ? $F{nome} : "  -----  "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="117" y="0" width="108" height="20" uuid="65daf24c-831b-472e-b3cb-68f7cdb77395"/>
+				<textFieldExpression><![CDATA[$F{razaoSocial}.length() > 1 && $F{razaoSocial} != null ? $F{razaoSocial} : "  ------  "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="229" y="0" width="87" height="20" uuid="a59eb148-f24c-49aa-b357-a7acbd24b272"/>
+				<textFieldExpression><![CDATA[$F{cpf} != null ? $F{cpf} : "  --------------  "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="0" width="104" height="20" uuid="09673591-5f36-4cb6-83fb-22291385be6e"/>
+				<textFieldExpression><![CDATA[$F{cnpj} != null ? $F{cnpj} : "  --------------  "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="435" y="0" width="75" height="20" uuid="ae04c2b6-135b-41e3-9ad3-9efb5f96af6e"/>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="515" y="0" width="35" height="20" uuid="db829cf4-e11e-4263-a6e9-004b18df620c"/>
+				<textElement textAlignment="Center"/>
+				<textFieldExpression><![CDATA[$F{uf}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="17" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

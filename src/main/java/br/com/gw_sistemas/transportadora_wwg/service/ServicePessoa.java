@@ -1,13 +1,17 @@
 package br.com.gw_sistemas.transportadora_wwg.service;
 
 import br.com.gw_sistemas.transportadora_wwg.model.Pessoa;
+import br.com.gw_sistemas.transportadora_wwg.nucleo.base.RelatorioBase;
 import br.com.gw_sistemas.transportadora_wwg.nucleo.base.ServicoBase;
 import br.com.gw_sistemas.transportadora_wwg.repositorys.RepositoryPessoa;
 import br.com.gw_sistemas.transportadorawwg.nucleo.utils.stringUtils.Cnpj;
 import br.com.gw_sistemas.transportadorawwg.nucleo.utils.stringUtils.Cpf;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ExceptionValidacao;
 import br.com.gw_sistemas.transportadorawwg.nucleo.validacoesExceptions.ValidationsEnum;
+import java.io.FileNotFoundException;
+import java.util.List;
 import java.util.Optional;
+import net.sf.jasperreports.engine.JRException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -121,4 +125,12 @@ public class ServicePessoa extends ServicoBase<Pessoa> {
         
         return result;
     }
+    
+
+    // -----------------------------------------------------------------------------------
+    
+    public byte[] exportReport() throws FileNotFoundException, JRException {
+        return RelatorioBase.exportReport((List) buscarListaPessoa(), "relatorioBaseClientes", "Clientes");
+    }
+
 }
