@@ -110,15 +110,18 @@
             <section class="pesquisa">
                 <div class="d-flex" role="Search">
                     <input class="form-control me-2" type="Search" placeholder="buscar por codigo" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">buscar</button>
+                    <button class="btn btn-outline-success" type="submit">buscar</button>
                 </div>
-
-                <a th:href="@{/transportadora-wwg/opcoes/clientes/cadastrar}">
-                    <button type="button" class="btn btn-success">Novo Clientes</button>
-                </a>
-                <a th:href="@{/transportadora-wwg/opcoes/Clientes/relatorioClientes}">
-                    <button type="button" class="btn btn-success">Exportar PDF</button>
-                </a>
+                
+                <div style="display: flex; gap: 10px;">
+                    <a th:href="@{/transportadora-wwg/opcoes/clientes/cadastrar}">
+                        <button type="button" class="btn btn-success">Novo Cliente</button>
+                    </a>
+                    
+                    <a th:href="@{/transportadora-wwg/opcoes/Clientes/relatorioClientes}">
+                        <button type="button" class="btn btn-success">Exportar PDF</button>
+                    </a>
+                </div>
             </section>
 
             <section class="card--conteudo">
@@ -139,17 +142,17 @@
                     </thead>
                     <tbody>
                         <tr th:each="client : ${listClients}">
-                            
+
                             <td class="text-center" th:if="${client.cpf}" th:text="${client.nome}"></td>
                             <td class="text-center" th:if="${client.cpf}" th:text="${client.cpf}"></td>
                             <td class="text-center" th:if="${client.cpf}" th:text="----------"></td>
                             <td class="text-center" th:if="${client.cpf}" th:text="----------"></td>
-                            
+
                             <td class="text-center" th:if="${client.cnpj}" th:text="----------"></td>
                             <td class="text-center" th:if="${client.cnpj}" th:text="----------"></td>
                             <td class="text-center" th:if="${client.cnpj}" th:text="${client.cnpj}"></td>
                             <td class="text-center" th:if="${client.cnpj}" th:text="${client.razaoSocial}"></td>
-                            
+
                             <td class="text-center" th:text="${client.cidade}"></td>
                             <td class="text-center" th:text="${client.bairro}"></td>
                             <td class="text-center" th:text="${client.rua}"></td>
