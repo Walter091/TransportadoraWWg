@@ -13,8 +13,6 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
     @Autowired
     private RepositorioBase<T> repositorio;
     
-    @Getter
-    @Setter
     public String ERRO = " ";
     
     public boolean salvar(T obj) {
@@ -86,6 +84,7 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
     }
 
     // -------------------------------------------------------------------------------------------------------------------------
+
     @Override
     public boolean doAntesDeSalvar(T obj) {
         // Imnplementar Validções nos filhos...
@@ -104,4 +103,14 @@ public abstract class ServicoBase<T> implements ItfcServicoValidacaoBase<T> {
         return true;
     }
 
+    // -------------------------------------------------------------------------------------------------------------------------
+
+	public String getERRO() {
+		return ERRO;
+	}
+
+	public void setERRO(String eRRO) {
+		ERRO = eRRO;
+	}
+    
 }
