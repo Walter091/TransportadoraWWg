@@ -155,7 +155,7 @@ join produto p on (p.id = l.produto)]]>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="45" splitType="Stretch"/>
+		<band height="52" splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
 		<band height="54" splitType="Stretch">
@@ -166,6 +166,6 @@ join produto p on (p.id = l.produto)]]>
 		</band>
 	</pageFooter>
 	<summary>
-		<band height="42" splitType="Stretch"/>
+		<band height="45" splitType="Stretch"/>
 	</summary>
 </jasperReport>

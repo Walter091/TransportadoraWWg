@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="subReportLancamento" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="842" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="ecf716b0-cc59-434c-9276-c38531847f0c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select  *  from lancamento]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="data_entrega" class="java.lang.String"/>
+	<field name="data_saida" class="java.lang.String"/>
+	<field name="ind_reg" class="java.lang.Integer"/>
+	<field name="status" class="java.lang.String"/>
+	<field name="destinatario" class="java.lang.Long"/>
+	<field name="produto" class="java.lang.Long"/>
+	<field name="remetente" class="java.lang.Long"/>
+	<group name="id">
+		<groupExpression><![CDATA[$F{id}]]></groupExpression>
+	</group>
+	<group name="data_entrega">
+		<groupExpression><![CDATA[$F{data_entrega}]]></groupExpression>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="38" splitType="Stretch">
+			<staticText>
+				<reportElement x="31" y="9" width="759" height="20" forecolor="#130707" backcolor="#6D5858" uuid="32d12324-e284-487b-bb66-a27392d880c8"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatórios dos Lançamentos]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="39" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="10" width="40" height="20" uuid="4a5cad30-c32e-45bc-be77-edcadd4925ab"/>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="10" width="100" height="20" uuid="4b006ebb-0990-4229-8639-134bda34ab14"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Entrega]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="161" y="10" width="100" height="20" uuid="5300fdcc-c0b8-4f16-985d-8137992ac55d"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Saída]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="34" width="795" height="1" uuid="6a0ad5a7-8d0e-4a2e-89c8-003a5d3c6dce"/>
+			</line>
+			<staticText>
+				<reportElement x="266" y="10" width="100" height="20" uuid="bd72b08d-521e-427a-83d9-e6461b01ab1e"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Produto]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="371" y="10" width="158" height="20" uuid="b598d77f-cfd0-43d2-8e52-2f546c4fdad9"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Destinatário]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="701" y="10" width="100" height="20" uuid="80d765da-7e79-4867-bc63-5cc14b1e8c80"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="534" y="10" width="160" height="20" uuid="60e19812-cfbe-482c-a593-8aacc47180c5"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Remetente]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="32" splitType="Stretch">
+			<textField>
+				<reportElement x="10" y="0" width="40" height="20" uuid="3af61fc1-259b-4590-bfdf-abb9ff3f83fb"/>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="55" y="0" width="100" height="20" uuid="3c306465-1ceb-457e-94ad-b26a8d694a79"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_entrega}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="160" y="0" width="100" height="20" uuid="ab45aea0-be9b-4a0e-9792-c8f4eb2d82f9"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{data_saida}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="265" y="0" width="100" height="20" uuid="70c79247-9f8f-4418-b3b4-f5a563fe234a"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{produto}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="370" y="0" width="158" height="20" uuid="a294010c-9c24-430e-8b77-1e089d682c02"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{destinatario}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="533" y="0" width="160" height="20" uuid="71e557e5-1c23-48e7-83dd-62da41e6823a"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{remetente}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="700" y="0" width="100" height="20" uuid="a3c86e88-3d58-40ce-9fe3-474b21131189"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{status}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="11" y="16" width="100" height="20" uuid="236e1ede-f3e6-4737-9a45-38f74678eb3a"/>
+				<textElement>
+					<font fontName="Courier New"/>
+				</textElement>
+				<text><![CDATA[Lançamentos]]></text>
+			</staticText>
+			<line>
+				<reportElement x="10" y="10" width="795" height="1" uuid="5111150d-e6d6-497d-88ec-3789fd80533d"/>
+			</line>
+			<textField>
+				<reportElement x="362" y="16" width="100" height="20" uuid="06fb98c7-7e3a-40fc-8b08-f845d8110ad6"/>
+				<textFieldExpression><![CDATA[$V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

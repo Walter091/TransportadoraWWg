@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="barcodeTeste" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6217f917-5c16-4b24-805b-2d2f00fa58db">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["/home/walter/Documentos/arquivos jars ireport/"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[Select * from pessoa p  FETCH FIRST 1 ROWS ONLY]]>
+	</queryString>
+	<field name="id" class="java.lang.Long"/>
+	<field name="bairro" class="java.lang.String"/>
+	<field name="cidade" class="java.lang.String"/>
+	<field name="cnpj" class="java.lang.String"/>
+	<field name="cpf" class="java.lang.String"/>
+	<field name="ind_reg" class="java.lang.Integer"/>
+	<field name="nome" class="java.lang.String"/>
+	<field name="numero" class="java.lang.Integer"/>
+	<field name="razao_social" class="java.lang.String"/>
+	<field name="rua" class="java.lang.String"/>
+	<field name="uf" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="129" splitType="Stretch">
+			<staticText>
+				<reportElement x="106" y="0" width="324" height="38" backcolor="#CC7C7C" uuid="f7704b3d-5024-40de-8909-a471b906b15b"/>
+				<textElement textAlignment="Center">
+					<font size="24" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório]]></text>
+			</staticText>
+			<image>
+				<reportElement x="430" y="14" width="100" height="50" uuid="90a3683a-3fbe-4791-864c-03900e92e513"/>
+			</image>
+			<staticText>
+				<reportElement x="6" y="38" width="195" height="20" uuid="c780298a-89ba-4793-bd41-7aef57e31352"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Fone: 81 9 9832-5689]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="58" width="195" height="20" uuid="6a184542-5784-42e7-86b6-03c3e7f0c62f"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Instagram: @DosReports]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="6" y="78" width="341" height="20" uuid="51839c14-de64-4ca1-bc04-c0d75ccc6779"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Criando relatórios desde 1900 e Bolinha]]></text>
+			</staticText>
+			<line>
+				<reportElement x="9" y="117" width="540" height="1" uuid="c4b0ae17-9083-4632-ae4d-6de1c419e347"/>
+			</line>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="38">
+			<staticText>
+				<reportElement mode="Opaque" x="6" y="15" width="272" height="20" forecolor="#050000" backcolor="#908484" uuid="a771c4e0-a800-4c62-bb98-d1a98cca32aa"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Relatório Detalhado (Clientes):]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="6" y="18" width="45" height="20" uuid="a35622de-9562-418d-8068-e20f6273fdfb"/>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="56" y="18" width="222" height="20" uuid="3e5f16c1-95cb-4a5f-aee5-2a00f45db364"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nome / Razão Social]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="288" y="18" width="100" height="20" uuid="ec9b07df-b0b9-487b-9a7a-aa5a714d6c1f"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Bairro]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="393" y="18" width="100" height="20" uuid="e8853e4b-dbcd-42bd-b779-3ae9458e3dc9"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="499" y="18" width="50" height="20" uuid="381390dc-e3f8-48d5-a3da-38ab03a4cc5d"/>
+				<textElement>
+					<font fontName="Courier New" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UF]]></text>
+			</staticText>
+			<line>
+				<reportElement x="9" y="43" width="540" height="1" uuid="76c26a71-b2f3-4569-9192-47fc16e786a3"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="97" splitType="Stretch">
+			<textField>
+				<reportElement x="6" y="0" width="45" height="20" uuid="7d80a5c2-718a-45fc-b39e-fca7b2640d92"/>
+				<textElement textAlignment="Right">
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{id}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="499" y="0" width="50" height="20" uuid="2dd4d3ed-33fe-4199-ab31-383452670a7f"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{uf}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="393" y="0" width="100" height="20" uuid="6c004866-7cd3-4300-91a1-06f537ff1504"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cidade}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="56" y="0" width="222" height="20" uuid="7a025b20-25c9-4011-b42f-e05f13c316c1"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nome} == null || $F{nome} == "" ? $F{razao_social} : $F{nome}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="288" y="0" width="100" height="20" uuid="dde52bae-d658-4f8d-b7a6-1d4e7989b5e2"/>
+				<textElement>
+					<font fontName="Courier New" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{bairro}]]></textFieldExpression>
+			</textField>
+			<elementGroup/>
+			<elementGroup>
+				<subreport>
+					<reportElement x="8" y="32" width="540" height="46" uuid="bec196fe-a5d8-46d2-b22c-cbf1215d7179"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["/home/walter/Documentos/subReportLancamento.jasper"]]></subreportExpression>
+				</subreport>
+			</elementGroup>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<staticText>
+				<reportElement x="21" y="7" width="516" height="37" uuid="3fef6732-0f8c-42f5-b974-f0503cfb85cf"/>
+				<textElement textAlignment="Center">
+					<font fontName="Courier New" size="14" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Este é um relatório gerado por um dev que está estudando ireports para começar a pegar demandas ]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>
